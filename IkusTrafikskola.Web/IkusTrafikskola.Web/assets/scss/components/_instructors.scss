@@ -1,0 +1,62 @@
+.instructor-section {
+    .info {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 100%;
+
+        p {
+            font-size: 14px;
+            color: rgba($dark, .6);
+        }
+
+        small {
+            display: inline-block;
+            position: relative;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            color: rgba($dark, .6);
+
+            &:after,
+            &:before {
+                content: "";
+                position: absolute;
+                left: 0;
+                bottom: 0;
+                height: 1px;
+            }
+
+            &:after {
+                background: #ececec;
+                width: 100%;
+            }
+
+            &:before {
+                background: $primary;
+                width: 60%;
+                z-index: 1;
+            }
+        }
+
+        .social-icons {
+            a {
+                position: relative;
+                top: 0;
+                @include short-transition;
+    
+                &:after {
+                    display: none;
+                }
+    
+                &:hover {
+                    top: -5px;
+                }
+            }
+    
+            .fab {
+                font-size: 2rem;
+                color: $primary;
+            }
+        }
+    }
+}

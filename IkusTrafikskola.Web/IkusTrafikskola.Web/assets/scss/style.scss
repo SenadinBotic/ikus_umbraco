@@ -1,0 +1,22 @@
+/*!
+ * Bootstrap 5 clean project
+ * Copyright 2021
+ * Author Senadin Botic
+ */
+
+// Default variables & overwrites
+@import "variables";
+
+// Generate Bootstrap required
+@import "required";
+
+// Generate utilities
+@import "utilities"; 
+
+// Generate optionals 
+@import "optional"; 
+
+// Template utilities
+@import "helpers";
+@import "defaults";
+@import "components";

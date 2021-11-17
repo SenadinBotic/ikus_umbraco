@@ -219,7 +219,6 @@ C:\Users\senad\OneDrive\Documents\MyGitHub\ikus_umbraco\IkusTrafikskola.Web\Ikus
 C:\Users\senad\OneDrive\Documents\MyGitHub\ikus_umbraco\IkusTrafikskola.Web\IkusTrafikskola.Web\bin\Umbraco.Web.xml
 C:\Users\senad\OneDrive\Documents\MyGitHub\ikus_umbraco\IkusTrafikskola.Web\IkusTrafikskola.Web\bin\Umbraco.Web.UI.xml
 C:\Users\senad\OneDrive\Documents\MyGitHub\ikus_umbraco\IkusTrafikskola.Web\IkusTrafikskola.Web\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-C:\Users\senad\OneDrive\Documents\MyGitHub\ikus_umbraco\IkusTrafikskola.Web\IkusTrafikskola.Web\obj\Debug\IkusTrafikskola.Web.csproj.AssemblyReference.cache
 C:\Users\senad\OneDrive\Documents\MyGitHub\ikus_umbraco\IkusTrafikskola.Web\IkusTrafikskola.Web\obj\Debug\IkusTrafikskola.Web.csproj.CoreCompileInputs.cache
 C:\Users\senad\OneDrive\Documents\MyGitHub\ikus_umbraco\IkusTrafikskola.Web\IkusTrafikskola.Web\obj\Debug\IkusTrafikskola.Web.csproj.CopyComplete
 C:\Users\senad\OneDrive\Documents\MyGitHub\ikus_umbraco\IkusTrafikskola.Web\IkusTrafikskola.Web\obj\Debug\IkusTrafikskola.Web.dll

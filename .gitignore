@@ -26,7 +26,18 @@ bld/
 [Ll]og/
 [Ll]ogs/
 App_Data/
+**/App_Data/TEMP/
+**/App_Data/Logs/
+**/App_Data/ClientDependency/
+**/App_Data/Preview/
 
+/IkusTrafikskola.Web/App_Data
+/IkusTrafikskola.Web/bin
+/IkusTrafikskola.Web/obj/Debug
+/IkusTrafikskola.Web/Umbraco
+/packages
+/IkusTrafikskola.Core/bin/Debug
+/IkusTrafikskola.Core/obj/Debug
 # Visual Studio 2015/2017 cache/options directory
 .vs/
 # Uncomment if you have tasks that create the project's static files in wwwroot
@@ -341,3 +352,4 @@ healthchecksdb
 
 # Backup folder for Package Reference Convert tool in Visual Studio 2017
 MigrationBackup/
+IkusTrafikskola.Web/.vs/IkusTrafikskola.Web/v16/.suo

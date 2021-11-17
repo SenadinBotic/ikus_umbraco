@@ -1,0 +1,40 @@
+@mixin absolute {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+@mixin absolute-cover {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+}
+
+@mixin absolute-full {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+
+@mixin centered {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    @include transform(translate(-50%,-50%));
+}
+
+@mixin absolute-v-centered {
+    position: absolute;
+    top: 50%;
+    @include transform(translateY(-50%));
+}
+
+@mixin absolute-h-centered {
+    position: absolute;
+    left: 50%;
+    @include transform(translateX(-50%));
+}

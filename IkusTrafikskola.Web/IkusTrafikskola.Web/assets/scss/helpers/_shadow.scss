@@ -1,0 +1,11 @@
+@mixin box-shadow-xs {
+    @include box-shadow(0 0 10px rgba($black, 0.125));
+}
+
+@mixin box-shadow-sm {
+    @include box-shadow(0 2px 20px rgba($black, 0.125));
+}
+
+@mixin box-shadow-lg {
+    @include box-shadow(0 3px 30px rgba($black, 0.125));
+}

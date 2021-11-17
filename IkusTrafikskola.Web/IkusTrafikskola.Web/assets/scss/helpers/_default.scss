@@ -1,0 +1,10 @@
+@mixin dark-mode {
+    [data-theme="dark"] {
+        @content;
+    }
+}
+
+@mixin reset-spacing {
+    margin: 0;
+    padding: 0;
+}

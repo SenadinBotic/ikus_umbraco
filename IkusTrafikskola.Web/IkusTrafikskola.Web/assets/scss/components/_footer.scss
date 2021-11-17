@@ -1,0 +1,149 @@
+.footer {
+    // background-color: $dark;
+    -webkit-background-size: cover;
+    background-size: cover;
+    position: relative;
+    z-index: 1;
+
+    &:before {
+        content: "";
+        z-index: -1;
+        background-color: rgba($black, .7);
+        @include absolute-full;
+    }
+
+    .copyright {
+        color: $white;
+        font-size: .875rem;
+        font-weight: 400;
+        position: relative;
+
+        &:before {
+            content: "";
+            background-color: $primary;
+            border-radius: 50%;
+            height: 1px;
+            left: 70px;
+            position: absolute;
+            right: 70px;
+            top: 0;
+        }
+
+        a {
+            @include media-breakpoint-only(xs) {
+                & {
+                    display: block;
+                    text-decoration: underline;
+                    
+                    &:after {
+                        display: none;
+                    }
+                }
+            }
+        }
+    }
+
+    h2 {
+        color: $white;
+        position: relative;
+        font-size: 1.2rem;
+        line-height: 1;
+        padding-bottom: 15px;
+        margin-bottom: 20px;
+
+        &:before,
+        &:after {
+            content: '';
+            position: absolute;
+            left: 0px;
+            bottom: 0px;
+            height: 1px;
+
+            @include media-breakpoint-down(md) {
+                & {
+                    @include absolute-h-centered;
+                }
+            }
+        }
+
+        &:before {
+            width: 50px;
+            background-color: $gray;
+        }
+
+        &:after {
+            width: 32px;
+            background-color: $primary;
+        }
+
+        @include media-breakpoint-down(md) {
+            & {
+                text-align: center;
+            }
+        }
+    }
+
+    i {
+        color: $gray;
+        font-size: .875rem;
+    }
+
+    .social-icons {
+        a {
+            position: relative;
+            top: 0;
+            @include transition(top 0.3s);
+
+            &:after {
+                display: none;
+            }
+
+            &:hover {
+                top: -5px;
+            }
+        }
+
+        .fab {
+            font-size: 2rem;
+            color: $white;
+        }
+    }
+
+    ul {
+        list-style: none;
+
+        li {
+            color: $white;
+            font-weight: 300;
+            margin-bottom: 15px;
+
+            i {
+                font-size: 1.1rem;
+                padding-right: 10px;
+                width: 30px;
+            }
+
+            i,
+            a {
+                color: white;
+            }
+
+            a {
+                font-weight: 300;
+
+                &:after {
+                    background: $white;
+                    visibility: hidden;
+                    @include transform(scale(0));
+                }
+
+                &:hover {
+                    &:after {
+                        visibility: visible;
+                        @include transform(scale(1));
+                    }
+                }
+            }
+        }
+    }
+}

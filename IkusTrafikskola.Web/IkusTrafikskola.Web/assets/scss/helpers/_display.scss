@@ -1,0 +1,35 @@
+@mixin flex($value) {
+    -ms-flex: $value;
+    -webkit-flex: $value;
+    flex: $value;
+}
+
+@mixin flex-width($value, $flexvalue) {
+    width: $value;
+    max-width: $value;
+    -ms-flex: $flexvalue;
+    -webkit-flex: $flexvalue;
+    flex: $flexvalue;
+}
+
+@mixin flex-wrap($value) {
+    -ms-flex-wrap: $value;
+    -webkit-flex-wrap: $value;
+    flex-wrap: $value;
+}
+
+@mixin flex-direction($value) {
+    -ms-flex-direction: $value;
+    -webkit-flex-direction: $value;
+    flex-direction: $value;
+}
+
+@mixin table {
+    display: table;
+    width: 100%;
+}
+
+@mixin table-cell {
+    display: table-cell;
+    vertical-align: middle;
+}

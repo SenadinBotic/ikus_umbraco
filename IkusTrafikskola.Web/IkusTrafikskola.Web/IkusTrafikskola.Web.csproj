@@ -298,6 +298,17 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="assets\images\error-img.png" />
+    <Content Include="assets\images\favicon.ico" />
+    <Content Include="assets\images\map-marker.png" />
+    <Content Include="assets\scripts\counter.js" />
+    <Content Include="assets\scripts\main.js" />
+    <Content Include="assets\scss\style.css">
+      <DependentUpon>style.scss</DependentUpon>
+    </Content>
+    <Content Include="assets\scss\style.min.css">
+      <DependentUpon>style.css</DependentUpon>
+    </Content>
     <Content Include="config\grid.editors.config.js" />
     <Content Include="config\Lang\cs-CZ.user.xml" />
     <Content Include="config\Lang\da-DK.user.xml" />
@@ -336,6 +347,131 @@
     <Content Include="config\HealthChecks.config" />
     <Content Include="config\ClientDependency.config" />
     <Content Include="config\BackOfficeTours\getting-started.json" />
+    <Content Include="assets\bootstrap\scss\bootstrap-grid.scss" />
+    <Content Include="assets\bootstrap\scss\bootstrap-reboot.scss" />
+    <Content Include="assets\bootstrap\scss\bootstrap-utilities.scss" />
+    <Content Include="assets\bootstrap\scss\bootstrap.scss" />
+    <Content Include="assets\bootstrap\scss\forms\_floating-labels.scss" />
+    <Content Include="assets\bootstrap\scss\forms\_form-check.scss" />
+    <Content Include="assets\bootstrap\scss\forms\_form-control.scss" />
+    <Content Include="assets\bootstrap\scss\forms\_form-range.scss" />
+    <Content Include="assets\bootstrap\scss\forms\_form-select.scss" />
+    <Content Include="assets\bootstrap\scss\forms\_form-text.scss" />
+    <Content Include="assets\bootstrap\scss\forms\_input-group.scss" />
+    <Content Include="assets\bootstrap\scss\forms\_labels.scss" />
+    <Content Include="assets\bootstrap\scss\forms\_validation.scss" />
+    <Content Include="assets\bootstrap\scss\helpers\_clearfix.scss" />
+    <Content Include="assets\bootstrap\scss\helpers\_colored-links.scss" />
+    <Content Include="assets\bootstrap\scss\helpers\_position.scss" />
+    <Content Include="assets\bootstrap\scss\helpers\_ratio.scss" />
+    <Content Include="assets\bootstrap\scss\helpers\_stretched-link.scss" />
+    <Content Include="assets\bootstrap\scss\helpers\_text-truncation.scss" />
+    <Content Include="assets\bootstrap\scss\helpers\_visually-hidden.scss" />
+    <Content Include="assets\bootstrap\scss\mixins\_alert.scss" />
+    <Content Include="assets\bootstrap\scss\mixins\_border-radius.scss" />
+    <Content Include="assets\bootstrap\scss\mixins\_box-shadow.scss" />
+    <Content Include="assets\bootstrap\scss\mixins\_breakpoints.scss" />
+    <Content Include="assets\bootstrap\scss\mixins\_buttons.scss" />
+    <Content Include="assets\bootstrap\scss\mixins\_caret.scss" />
+    <Content Include="assets\bootstrap\scss\mixins\_clearfix.scss" />
+    <Content Include="assets\bootstrap\scss\mixins\_color-scheme.scss" />
+    <Content Include="assets\bootstrap\scss\mixins\_container.scss" />
+    <Content Include="assets\bootstrap\scss\mixins\_deprecate.scss" />
+    <Content Include="assets\bootstrap\scss\mixins\_forms.scss" />
+    <Content Include="assets\bootstrap\scss\mixins\_gradients.scss" />
+    <Content Include="assets\bootstrap\scss\mixins\_grid.scss" />
+    <Content Include="assets\bootstrap\scss\mixins\_image.scss" />
+    <Content Include="assets\bootstrap\scss\mixins\_list-group.scss" />
+    <Content Include="assets\bootstrap\scss\mixins\_lists.scss" />
+    <Content Include="assets\bootstrap\scss\mixins\_pagination.scss" />
+    <Content Include="assets\bootstrap\scss\mixins\_reset-text.scss" />
+    <Content Include="assets\bootstrap\scss\mixins\_resize.scss" />
+    <Content Include="assets\bootstrap\scss\mixins\_table-variants.scss" />
+    <Content Include="assets\bootstrap\scss\mixins\_text-truncate.scss" />
+    <Content Include="assets\bootstrap\scss\mixins\_transition.scss" />
+    <Content Include="assets\bootstrap\scss\mixins\_utilities.scss" />
+    <Content Include="assets\bootstrap\scss\mixins\_visually-hidden.scss" />
+    <Content Include="assets\bootstrap\scss\utilities\_api.scss" />
+    <Content Include="assets\bootstrap\scss\vendor\_rfs.scss" />
+    <Content Include="assets\bootstrap\scss\_accordion.scss" />
+    <Content Include="assets\bootstrap\scss\_alert.scss" />
+    <Content Include="assets\bootstrap\scss\_badge.scss" />
+    <Content Include="assets\bootstrap\scss\_breadcrumb.scss" />
+    <Content Include="assets\bootstrap\scss\_button-group.scss" />
+    <Content Include="assets\bootstrap\scss\_buttons.scss" />
+    <Content Include="assets\bootstrap\scss\_card.scss" />
+    <Content Include="assets\bootstrap\scss\_carousel.scss" />
+    <Content Include="assets\bootstrap\scss\_close.scss" />
+    <Content Include="assets\bootstrap\scss\_containers.scss" />
+    <Content Include="assets\bootstrap\scss\_dropdown.scss" />
+    <Content Include="assets\bootstrap\scss\_forms.scss" />
+    <Content Include="assets\bootstrap\scss\_functions.scss" />
+    <Content Include="assets\bootstrap\scss\_grid.scss" />
+    <Content Include="assets\bootstrap\scss\_helpers.scss" />
+    <Content Include="assets\bootstrap\scss\_images.scss" />
+    <Content Include="assets\bootstrap\scss\_list-group.scss" />
+    <Content Include="assets\bootstrap\scss\_mixins.scss" />
+    <Content Include="assets\bootstrap\scss\_modal.scss" />
+    <Content Include="assets\bootstrap\scss\_nav.scss" />
+    <Content Include="assets\bootstrap\scss\_navbar.scss" />
+    <Content Include="assets\bootstrap\scss\_offcanvas.scss" />
+    <Content Include="assets\bootstrap\scss\_pagination.scss" />
+    <Content Include="assets\bootstrap\scss\_popover.scss" />
+    <Content Include="assets\bootstrap\scss\_progress.scss" />
+    <Content Include="assets\bootstrap\scss\_reboot.scss" />
+    <Content Include="assets\bootstrap\scss\_root.scss" />
+    <Content Include="assets\bootstrap\scss\_spinners.scss" />
+    <Content Include="assets\bootstrap\scss\_tables.scss" />
+    <Content Include="assets\bootstrap\scss\_toasts.scss" />
+    <Content Include="assets\bootstrap\scss\_tooltip.scss" />
+    <Content Include="assets\bootstrap\scss\_transitions.scss" />
+    <Content Include="assets\bootstrap\scss\_type.scss" />
+    <Content Include="assets\bootstrap\scss\_utilities.scss" />
+    <Content Include="assets\bootstrap\scss\_variables.scss" />
+    <Content Include="assets\scss\components\_blog.scss" />
+    <Content Include="assets\scss\components\_buttons.scss" />
+    <Content Include="assets\scss\components\_card.scss" />
+    <Content Include="assets\scss\components\_feature.scss" />
+    <Content Include="assets\scss\components\_footer.scss" />
+    <Content Include="assets\scss\components\_forms.scss" />
+    <Content Include="assets\scss\components\_funfact.scss" />
+    <Content Include="assets\scss\components\_header.scss" />
+    <Content Include="assets\scss\components\_hero-banner.scss" />
+    <Content Include="assets\scss\components\_image-gallery.scss" />
+    <Content Include="assets\scss\components\_instructors.scss" />
+    <Content Include="assets\scss\components\_latest-information.scss" />
+    <Content Include="assets\scss\components\_link-list.scss" />
+    <Content Include="assets\scss\components\_page-intro.scss" />
+    <Content Include="assets\scss\components\_place-map.scss" />
+    <Content Include="assets\scss\components\_pricing.scss" />
+    <Content Include="assets\scss\components\_scroll-to-top.scss" />
+    <Content Include="assets\scss\components\_search.scss" />
+    <Content Include="assets\scss\components\_section-intro.scss" />
+    <Content Include="assets\scss\components\_table.scss" />
+    <Content Include="assets\scss\components\_testimonial.scss" />
+    <Content Include="assets\scss\components\_time-list.scss" />
+    <Content Include="assets\scss\defaults\_reset.scss" />
+    <Content Include="assets\scss\defaults\_typography.scss" />
+    <Content Include="assets\scss\helpers\_default.scss" />
+    <Content Include="assets\scss\helpers\_display.scss" />
+    <Content Include="assets\scss\helpers\_headings.scss" />
+    <Content Include="assets\scss\helpers\_position.scss" />
+    <Content Include="assets\scss\helpers\_radius.scss" />
+    <Content Include="assets\scss\helpers\_shadow.scss" />
+    <Content Include="assets\scss\helpers\_socialbuttons.scss" />
+    <Content Include="assets\scss\helpers\_transition.scss" />
+    <Content Include="assets\scss\style.scss" />
+    <Content Include="assets\scss\_components.scss" />
+    <Content Include="assets\scss\_defaults.scss" />
+    <Content Include="assets\scss\_helpers.scss" />
+    <Content Include="assets\scss\_optional.scss" />
+    <Content Include="assets\scss\_required.scss" />
+    <Content Include="assets\scss\_utilities.scss" />
+    <Content Include="assets\scss\_variables.scss" />
+    <None Include="compilerconfig.json" />
+    <None Include="compilerconfig.json.defaults">
+      <DependentUpon>compilerconfig.json</DependentUpon>
+    </None>
     <None Include="packages.config" />
     <Content Include="Views\Web.config" />
     <Content Include="Views\Partials\Grid\Editors\Textstring.cshtml" />
@@ -353,6 +489,9 @@
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\Models\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

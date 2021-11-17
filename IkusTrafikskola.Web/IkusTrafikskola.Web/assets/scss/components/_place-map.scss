@@ -1,0 +1,14 @@
+.place-map {
+    height: 350px;
+
+    @include media-breakpoint-up(lg) {
+        & {
+            height: 450px;
+        }
+    }
+
+    #googleMap {
+        height: 100%;
+        width: 100%;
+    }
+}
