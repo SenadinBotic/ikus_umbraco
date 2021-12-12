@@ -1,8 +1,90 @@
 ﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage
+
+@using ClientDependency.Core.Mvc
+@using Our.Umbraco.EditLink
+
 @{
-	Layout = null;
+    Layout = null;
+
+    Html.RequiresJs("https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js");
+    Html.RequiresJs("https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js");
+    Html.RequiresJs("https://cdnjs.cloudflare.com/ajax/libs/filterizr/2.2.4/jquery.filterizr.min.js");
+    Html.RequiresJs("https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.0.0/jquery.magnific-popup.min.js");
+    Html.RequiresJs("https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.js");
+    Html.RequiresJs("https://cdnjs.cloudflare.com/ajax/libs/aos/2.0.2/aos.js");
+    Html.RequiresJs("/assets/scripts/counter.js");
+    Html.RequiresJs("/assets/scripts/main.js");
 }
 
-@* the fun starts here *@
+@{
+    var homePage = Model.AncestorOrSelf<Home>();
+    var pagesHeader = (Model.Id != 1078) ? "pages-header" : "";
+    var pagesMain = (Model.Id != 1078) ? "pages-main" : "";
+}
 
-@RenderBody()
+<!DOCTYPE html>
+<html lang="se">
+
+<head>
+    <title>Ikus Trafikskola</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible"
+          content="IE=edge">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color"
+          content="#000000" />
+    <link rel="apple-touch-icon"
+          href="./assets/images/logo.png">
+
+    <meta name="description"
+          content="Ikus Trafikskola">
+
+    @{ Html.RenderAction("RenderMetaData", "MetaDataSurface"); }
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/assets/images/favicon.ico">
+
+    <!--Fonts-->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600;1,700&display=swap"
+          rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <link href="~/assets/scss/style.min.css" rel="stylesheet" type="text/css">
+
+</head>
+
+<body>
+
+    @Html.RenderEditLink(Model)
+
+    <header class="@pagesHeader">
+        @Html.Partial("~/Views/Partials/header.cshtml")
+    </header>
+
+    <main class="@pagesMain">
+        @RenderBody()
+    </main>
+
+    <a href="#"
+       id="toTopBtn"
+       data-abc="true">
+        <i class="fas fa-chevron-up text-white"></i>
+    </a>
+
+    @Html.Partial("~/Views/Partials/footer.cshtml")
+
+    @Html.Partial("~/Views/Partials/actionModal.cshtml")
+
+    @Html.RenderJsHere()
+
+</body>
+
+</html>

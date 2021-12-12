@@ -1,0 +1,88 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage
+
+@{
+    Layout = "Master.cshtml";
+
+    var ikusImages = Model.Value<IEnumerable<IPublishedContent>>("ikusImages");
+    var carImages = Model.Value<IEnumerable<IPublishedContent>>("carImages");
+    var studentImages = Model.Value<IEnumerable<IPublishedContent>>("studentImages");
+}
+
+@Html.Partial("~/Views/Partials/contentIntro.cshtml")
+
+<div class="gallery-section">
+    <div class="container mt-4 mb-3 mt-md-7 mb-md-6">
+        <div class="image-gallery">
+
+            <div class="filter-nav text-center mb-5">
+                <ul class="m-0 p-0">
+                    <li class="active"
+                        data-filter="all">@Umbraco.GetDictionaryValue("Gallery.All")</li>
+                        <li data-filter="ikus">Ikus</li>
+                        <li data-filter="cars">@Umbraco.GetDictionaryValue("Gallery.Cars")</li>
+                        <li data-filter="students">@Umbraco.GetDictionaryValue("Gallery.Students")</li>
+                    </ul>
+                </div>
+
+            <div class="filtr-container row m-0">
+
+                @foreach (var ikusImage in ikusImages)
+        {
+            <div class="filtr-item col-sm-6 col-md-3"
+                 data-category="ikus"
+                 data-title="@ikusImage.Name">
+                <a href="@ikusImage.Url()"
+                   class="image-popup">
+
+
+                    <i class="fas fa-search"></i>
+
+                    <img loading=lazy src="@ikusImage.Url()"
+                         alt="@ikusImage.Name"
+                         class="img-fluid" />
+
+                </a>
+            </div>
+        }
+
+        @foreach (var carImage in carImages)
+        {
+            <div class="filtr-item col-sm-6 col-md-3"
+                 data-category="cars"
+                 data-title="@carImage.Name">
+                <a href="@carImage.Url()"
+                   class="image-popup">
+
+                    <i class="fas fa-search"></i>
+
+                    <img loading=lazy src="@carImage.Url()"
+                         alt="@carImage.Name"
+                         class="img-fluid" />
+
+                </a>
+            </div>
+        }
+
+        @foreach (var studentImage in studentImages)
+        {
+            <div class="filtr-item col-sm-6 col-md-3"
+                 data-category="students"
+                 data-title="@studentImage.Name">
+                <a href="@studentImage.Url()"
+                   class="image-popup">
+
+                    <i class="fas fa-search"></i>
+
+                    <img loading=lazy src="@studentImage.Url()"
+                         alt="@studentImage.Name"
+                         class="img-fluid" />
+
+                </a>
+            </div>
+        }
+
+            </div>
+
+            </div>
+        </div>
+    </div>

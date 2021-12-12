@@ -1,9 +1,23 @@
 ﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage<Umbraco.Web.PublishedModels.Home>
 
 @{
-	Layout = "Master.cshtml";
+    Layout = "Master.cshtml";
 }
 
-@* the fun starts here *@
+@Html.Partial("~/Views/Partials/Homepage/heroBanner.cshtml")
 
-@Model.Title
+@Html.Partial("~/Views/Partials/Homepage/latestInformation.cshtml")
+
+@Html.Partial("~/Views/Partials/Homepage/features.cshtml")
+
+@Html.Partial("~/Views/Partials/Homepage/funfact.cshtml")
+
+@Html.Partial("~/Views/Partials/Homepage/bestPrices.cshtml")
+
+@Html.Partial("~/Views/Partials/Homepage/testimonials.cshtml")
+
+@Html.Partial("~/Views/Partials/Homepage/latestImages.cshtml")
+
+@Html.Partial("~/Views/Partials/Homepage/openingHours.cshtml")
+
+@Html.Partial("~/Views/Partials/Homepage/homepageBlogs.cshtml")

@@ -1,0 +1,69 @@
+﻿
+@inherits UmbracoViewPage<ContactViewModel>
+@using IkusTrafikskola.Core.ViewModels
+@using IkusTrafikskola.Core.Contollers
+@using ClientDependency.Core.Mvc
+
+@{
+    Html.EnableClientValidation();
+    Html.EnableUnobtrusiveJavaScript();
+
+    Html.RequiresJs("https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js");
+    Html.RequiresJs("https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js");
+    Html.RequiresJs("https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js");
+    Html.RequiresJs("https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.12/jquery.validate.unobtrusive.min.js");
+    Html.RequiresJs("https://cdnjs.cloudflare.com/ajax/libs/jquery-ajax-unobtrusive/3.2.6/jquery.unobtrusive-ajax.min.js");
+    Html.RequiresJs("/assets/scripts/contactForm.js");
+}
+
+<div id="form-outer" class="contact-form mt-6">
+    @using (Ajax.BeginForm("SubmitForm", "ContactSurface", new AjaxOptions()
+    {
+        UpdateTargetId = "form-result",
+        HttpMethod = "POST",
+        InsertionMode = InsertionMode.Replace,
+        OnSuccess = "contactForm.showResult",
+        OnFailure = "contactForm.showResult"
+    }, new { id = "contact-form" }))
+    {
+
+        @Html.HiddenFor(m => m.ContactFormId)
+
+        <div class="row mb-5">
+            <div class="col-md-6 mb-4">
+                <label>@Umbraco.GetDictionaryValue("Contact.Label.FirstName")</label>
+                @Html.TextBoxFor(m => m.Name, new { @class = "form-control", placeholder = Umbraco.GetDictionaryValue("Contact.Placeholder.FirstName") })
+                @Html.ValidationMessageFor(m => m.Name)
+            </div>
+            <div class="col-md-6 mb-4">
+                <label>@Umbraco.GetDictionaryValue("Contact.Label.LastName")</label>
+                @Html.TextBoxFor(m => m.LastName, new { @class = "form-control", placeholder = Umbraco.GetDictionaryValue("Contact.Placeholder.LastName") })
+                @Html.ValidationMessageFor(m => m.LastName)
+            </div>
+            <div class="col-md-6 mb-4">
+                <label>@Umbraco.GetDictionaryValue("Contact.Label.Email")</label>
+                @Html.TextBoxFor(m => m.Email, new { @class = "form-control", placeholder = Umbraco.GetDictionaryValue("Contact.Placeholder.Email") })
+                @Html.ValidationMessageFor(m => m.Email)
+            </div>
+            <div class="col-md-6 mb-4">
+                <label>@Umbraco.GetDictionaryValue("Contact.Label.Subject")</label>
+                @Html.TextBoxFor(m => m.Subject, new { @class = "form-control", placeholder = Umbraco.GetDictionaryValue("Contact.Placeholder.Subject") })
+                @Html.ValidationMessageFor(m => m.Subject)
+            </div>
+
+            <div class="col-md-12">
+                <label>@Umbraco.GetDictionaryValue("Contact.Label.Message")</label>
+                @Html.TextAreaFor(m => m.Message, new { @class = "form-control", placeholder = Umbraco.GetDictionaryValue("Contact.Placeholder.Message") })
+                @Html.ValidationMessageFor(m => m.Message)
+            </div>
+        </div>
+        <div class="text-center">
+            <button class="btn btn-primary btn-sm contact-submit"
+                    type="submit">
+                @Umbraco.GetDictionaryValue("Contact.Submit")
+            </button>
+        </div>
+    }
+</div>
+
+<div id="form-result"></div>

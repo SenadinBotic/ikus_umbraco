@@ -1,0 +1,38 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage
+@using Umbraco.Web.Models
+
+@{
+    Layout = "Master.cshtml";
+    var linkSections = Model.Value<IEnumerable<IPublishedElement>>("linkList");
+}
+
+@Html.Partial("~/Views/Partials/contentIntro.cshtml")
+
+<div class="container py-4 py-md-5 py-lg-6">
+    <div class="row">
+        <div class="col-md-8 col-lg-10 mx-auto">
+            @{ Boolean first = true; }
+            @foreach (var item in linkSections)
+            {
+                var links = item.Value<IEnumerable<IPublishedElement>>("links");
+
+                <div class="@( first ? "mb-5" : "" )">
+                    <h3 class="mb-3">@item.Value("linkSectionTitle")</h3>
+                    <ul class="link-list">
+                        @foreach (var innerItem in links)
+                        {
+                            var link = innerItem.Value<Link>("linkTitle");
+                            <li>
+                                <a href="@link.Url" target="@link.Target">
+                                    @link.Name
+                                </a>
+                            </li>
+                        }
+                    </ul>
+                </div>
+
+                first = false;
+            }
+        </div>
+    </div>
+</div>

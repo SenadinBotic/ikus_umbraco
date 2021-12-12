@@ -1,0 +1,15 @@
+﻿@inherits UmbracoViewPage<MetaDataModel>
+
+@using IkusTrafikskola.Core.ViewModels
+
+<meta name="description" content="@Model.Description" />
+<meta name="keywords" content="@Model.Keywords" />
+<meta name="author" content="@Model.Title" />
+
+ @*Facebook and Twitter integration*@ 
+<meta property="og:title" content="@Model.Title" />
+<meta property="og:url" content="@Model.Url" />
+<meta property="og:site_name" content="@Model.Title" />
+<meta property="og:description" content="@Model.Description" />
+<meta name="twitter:title" content="@Model.Title" />
+<meta name="twitter:url" content="@Model.Url" />

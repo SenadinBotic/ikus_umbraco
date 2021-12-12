@@ -1,0 +1,49 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage
+
+@{
+    var homePage = Model.ContentType.Alias == "home";
+    var colClass = homePage ? "col-sm-4 col-lg-3" : "col-sm-4 col-md-12";
+
+    var latestBlogs = Model.Root().Descendants<Blog>().Where(x => x.IsVisible()).OrderByDescending(y => y.BlogDate).Take(3);
+}
+
+@foreach (var blog in latestBlogs)
+{
+    string imageUrl = "";
+    if (blog.BlogImage != null)
+    {
+        imageUrl = blog.BlogImage.Url();
+    }
+
+    <div class="@colClass">
+        <a href="@blog.Url()"
+           class="blog-item">
+
+            @if (blog.BlogImage != null)
+            {
+            <img loading=lazy class="img-fluid"
+                 src="@imageUrl"
+                 alt="@blog.BlogImage.Name">
+            }
+
+            <div class="blog-item-content">
+                <h3>@blog.BlogTitle</h3>
+
+                <div class="author">
+                    <i class="fas fa-user-edit text-primary"></i>
+                    @Umbraco.GetDictionaryValue("Blog.By")
+                    @blog.BlogAuthor
+                </div>
+
+                <div class="content">
+                    @blog.BlogText
+                </div>
+
+                <i class="text-primary">
+                    @Umbraco.GetDictionaryValue("Blog.ReadMore")
+                </i>
+            </div>
+
+        </a>
+    </div>
+}

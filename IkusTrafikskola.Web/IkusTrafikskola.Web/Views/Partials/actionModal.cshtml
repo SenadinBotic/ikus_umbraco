@@ -1,0 +1,58 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage
+@using Umbraco.Web.Models
+
+@{
+    var actionModal = Model.AncestorOrSelf<Home>();
+
+    var modalStatus = actionModal.Value<bool>("includeModal");
+    var title = actionModal.Value("modalTitle");
+    var content = actionModal.Value("modalContent");
+    var link = actionModal.Value<Link>("modalButton");
+    var image = actionModal.Value<IPublishedContent>("modalImage");
+    var isImageAction = actionModal.Value<bool>("showJustImage");
+
+    string imageUrl = "";
+    if (image != null)
+    {
+        imageUrl = image.Url();
+    }
+}
+
+<div class="modal fade action-modal" id="myModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <input type="hidden" name="name" class="modal-status" value="@modalStatus" />
+        @if (isImageAction)
+        {
+            <div class="img-content">
+                <picture>
+                    <img src="@imageUrl" alt="@image.Name" class="img-fluid">
+                </picture>
+            </div>
+        }
+        else
+        {
+            <div class="modal-content">
+                <div class="modal-header border-0">
+                    <h3 class="m-0">@title</h3>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <div class="content px-3 py-2">
+                    @content
+                </div>
+
+                <div class="row py-4">
+                    <div class="col-12 text-center">
+                        <a href="@link.Url"
+                           target="@link.Target"
+                           aria-label="@link.Name"
+                           class="btn btn-primary btn-sm">
+                            @link.Name @modalStatus
+                        </a>
+                    </div>
+                </div>
+            </div>
+        }
+
+    </div>
+</div>

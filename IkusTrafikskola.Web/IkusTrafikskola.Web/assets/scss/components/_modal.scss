@@ -1,0 +1,17 @@
+﻿.modal {
+    &.action-modal {
+        .img-content {
+            background: rgba($white, .7);
+            padding: 30px;
+        }
+
+        .btn-close {
+            &:focus,
+            &:hover,
+            &:active {
+                outline: none;
+                box-shadow: none;
+            }
+        }
+    }
+}

@@ -1,0 +1,6 @@
+{
+  "IIS-Site-Name": "ikustrafikskola",
+  "App-Pool-Name": "ikustrafikskola",
+  "IIS-App-Pool-Dot-Net-Version": "v4.0",
+  "bindings": [ "ikustrafikskola.localtest.me" ]
+}

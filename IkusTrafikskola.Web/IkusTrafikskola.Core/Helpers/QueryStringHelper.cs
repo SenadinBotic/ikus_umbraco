@@ -2,18 +2,18 @@
 
 namespace IkusTrafikskola.Core.Helpers
 {
-    public static class QueryStringHelper
+    public class QueryStringHelper
     {
-        //public static int GetIntFromQueryString(HttpRequestBase request, string key, int fallbackValue = 0)
-        //{
-        //    var stringValue = request.QueryString[key];
-        //    if(stringValue != null && !string.IsNullOrWhiteSpace(stringValue) && 
-        //        int.TryParse(stringValue, out var numericValue))
-        //    {
-        //        return numericValue;
-        //    }
+        public static int GetIntFromQueryString(HttpRequestBase request, string key, int fallbackValue = 0)
+        {
+            var stringValue = request.QueryString[key];
+            if (stringValue != null && !string.IsNullOrWhiteSpace(stringValue) &&
+                int.TryParse(stringValue, out var numericValue))
+            {
+                return numericValue;
+            }
 
-        //    return fallbackValue;
-        //}
+            return fallbackValue;
+        }
     }
 }

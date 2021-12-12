@@ -1,5 +1,37 @@
-.table {
+table {
+    width: 100%;
+    margin-bottom: 1rem;
+    color: #1e2024;
+    vertical-align: middle;
+    border-color: $light;
+
     ul {
         margin: 0;
+    }
+
+    > :not(caption) {
+        border-width: 1px 0;
+
+        > * {
+            > * {
+                padding: 0.5rem;
+                border-width: 0 1px;
+            }
+        }
+    }
+
+    tr {
+        &:first-child {
+            td {
+                font-weight: 700;
+            }
+        }
+
+        &:nth-child(even) {
+            td {
+                background-color: $primary;
+                color: $white;
+            }
+        }
     }
 }

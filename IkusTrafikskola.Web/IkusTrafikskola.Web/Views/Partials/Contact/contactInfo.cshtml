@@ -1,0 +1,36 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage
+
+@{
+    var homePage = Model.AncestorOrSelf<Home>();
+    var email = homePage.Value("email");
+    var address = homePage.Value("address");
+    var mobilePhone = homePage.Value("mobilePhone");
+    var officePhone = homePage.Value("officePhone");
+}
+
+<div class="col-lg-5">
+    <div class="card card-icon mb-5 ms-5">
+        <div class="icon-box">
+            <i class="fas fa-map-marker-alt"></i>
+        </div>
+        <h5>@Umbraco.GetDictionaryValue("Contact.VisitUs")</h5>
+        <p>@address</p>
+    </div>
+
+    <div class="card card-icon mb-5 ms-5">
+        <div class="icon-box">
+            <i class="fas fa-phone-alt"></i>
+        </div>
+        <h5>@Umbraco.GetDictionaryValue("Contact.CallUs")</h5>
+        <a href="tel:+@mobilePhone">@mobilePhone</a>
+        <a href="tel:+@officePhone">@officePhone</a>
+    </div>
+
+    <div class="card card-icon ms-5">
+        <div class="icon-box">
+            <i class="fas fa-envelope-open-text"></i>
+        </div>
+        <h5>@Umbraco.GetDictionaryValue("Contact.MailUs")</h5>
+        <a href="mailto:@email">@email@Umbraco.GetDictionaryValue("Footer.FollowUs")</a>
+    </div>
+</div>

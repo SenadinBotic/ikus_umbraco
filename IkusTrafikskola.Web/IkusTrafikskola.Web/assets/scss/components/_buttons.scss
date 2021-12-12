@@ -52,11 +52,16 @@ a {
     &-primary,
     &-outline-primary {
         color: $white;
-        
+
         &:focus,
         &:active,
         &:hover {
             color: $white;
         }
+    }
+
+    &.contact-submit {
+        padding-left: 15px;
+        padding-right: 15px;    
     }
 }

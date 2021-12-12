@@ -1,0 +1,73 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage
+@{
+    Layout = "Master.cshtml";
+    var searchQuery = Request.QueryString["q"];
+}
+
+@Html.Partial("~/Views/Partials/contentIntro.cshtml")
+
+<form action="@Model.Url"
+      method="GET"
+      id="search"
+      class="search-container my-4 my-md-6">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-md-10 col-lg-8 mx-auto pb-4 position-relative">
+
+                <input class="form-control search-position w-100"
+                       type="search"
+                       placeholder="@Umbraco.GetDictionaryValue("Search.Placeholder")"
+                       aria-label="Search"
+                       id="searchQuery"
+                       name="q"
+                       value="">
+                <button type="submit"
+                        aria-label="search-button"
+                        class="search-button">
+                    <i class="fas fa-search"></i>
+                </button>
+
+            </div>
+
+            <div class="col-md-10 col-lg-8 mx-auto">
+
+                @if (!string.IsNullOrWhiteSpace(searchQuery))
+                {
+                    var results = Umbraco.ContentQuery.Search(searchQuery, string.Empty);
+                    long resultCount = results != null && results.Any() ? results.Count() : 0;
+                    <h3 class="pb-4 h4">
+                        @Html.Raw(string.Format(Umbraco.GetDictionaryValue("Search.ResultsText"), resultCount))
+                    </h3>
+
+                    if (resultCount > 0)
+                    {
+                        foreach (var result in results)
+                        {
+                            var title = result.Content.Value<string>("title");
+                            //var authorName = result.Content.Value<string>("authorName");
+                            //var articleDate = result.Content.Value<DateTime>("articleDate");
+
+                            <div class="post-preview mb-4 pb-3">
+                                <a href="@result.Content.Url">
+                                    @(!string.IsNullOrWhiteSpace(title) ? title : result.Content.Name)
+                                    <p class="post-meta mb-0">
+                                        t also the leap into electronic typesetting, remaining essentially
+                                        unchanged. It was popularised in the 1960s with the release of
+                                        Letraset
+                                        sheets containing Lorem Ipsum passages, and more recently with
+                                        desktop
+                                        publishing software like Aldus PageMaker including versions of
+                                        Lorem
+                                        Ipsum.
+                                    </p>
+                                </a>
+                            </div>
+                        }
+                    }
+                }
+            </div>
+
+        </div>
+    </div>
+</form>

@@ -1,0 +1,21 @@
+﻿@inherits UmbracoViewPage
+@inherits Umbraco.Web.Mvc.UmbracoViewPage
+
+@{
+    var title = Model.HasValue("title") ? Model.Value("title") : Model.Name;
+    var description = Model.Value<IHtmlString>("description");
+    var image = Model.Value<IPublishedContent>("backgroundImage");
+
+    string imageUrl = "";
+    if (image != null)
+    {
+        imageUrl = image.Url();
+    }
+}
+
+<div class="page-intro"
+     style="@(!string.IsNullOrWhiteSpace(imageUrl) ? "background-image: url('" + imageUrl + "')" : "background-image: url('/assets/images/bg-img.jpg')" )">
+    <h2>@title</h2>
+
+    @description
+</div>

@@ -1,0 +1,40 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage
+@{
+    Layout = "Master.cshtml";
+}
+
+@Html.Partial("~/Views/Partials/contentIntro.cshtml")
+
+<div class="container py-4 py-md-5 py-lg-6">
+    <div class="row">
+        <div class="col-12 col-sm-8 col-md-6 col-lg-5 col-xl-4 mx-auto">
+            <div class="border border-primary rounded-3">
+                <div class="bg-primary rounded-bottom rounded-3 py-3 px-4">
+                    <span class="h3 fw-normal mb-0 text-white">Login</span>
+                </div>
+
+                <div class="p-4">
+                    <form action="">
+                        <input type="text"
+                               class="form-control mb-4"
+                               placeholder="Email"
+                               required
+                               autocomplete="off" />
+
+                        <input type="text"
+                               class="form-control mb-5"
+                               placeholder="Password"
+                               required
+                               autocomplete="off" />
+
+                        <div class="text-center">
+                            <button class="btn btn-primary w-100">
+                                Login
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

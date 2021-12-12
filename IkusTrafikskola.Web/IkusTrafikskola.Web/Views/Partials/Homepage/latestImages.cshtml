@@ -1,0 +1,99 @@
+﻿@inherits UmbracoViewPage
+
+@{
+    var images = Model.Root().Descendants<Gallery>().FirstOrDefault();
+
+    var ikusImages = images.Value<IEnumerable<IPublishedContent>>("ikusImages").OrderByDescending(x => x.CreateDate).Take(4).ToList();
+    var carImages = images.Value<IEnumerable<IPublishedContent>>("carImages").OrderByDescending(x => x.CreateDate).Take(4).ToList();
+    var studentImages = images.Value<IEnumerable<IPublishedContent>>("studentImages").OrderByDescending(x => x.CreateDate).Take(4).ToList();
+}
+
+<div class="container my-4 my-md-5 my-lg-6">
+    <div class="row">
+
+        <div class="col-12 mb-2">
+            <div class="section-intro centered">
+
+                <div>@Umbraco.GetDictionaryValue("Homepage.Gallery.Subtitle")</div>
+
+                <h2>@Umbraco.GetDictionaryValue("Homepage.Gallery.Title")</h2>
+
+            </div>
+        </div>
+
+        <div class="col-12">
+            <div class="image-gallery">
+
+                <div class="filter-nav text-center mb-5">
+                    <ul class="m-0 p-0">
+                        <li class="active"
+                            data-filter="all">@Umbraco.GetDictionaryValue("Gallery.All")</li>
+                            <li data-filter="ikus">Ikus</li>
+                            <li data-filter="cars">@Umbraco.GetDictionaryValue("Gallery.Cars")</li>
+                            <li data-filter="students">@Umbraco.GetDictionaryValue("Gallery.Students")</li>
+                        </ul>
+                    </div>
+
+                    <div class="filtr-container row m-0">
+
+                        @foreach (var ikusImage in ikusImages)
+                        {
+                            <div class="filtr-item col-sm-6 col-md-3"
+                                 data-category="ikus"
+                                 data-title="@ikusImage.Name">
+                                <a href="@ikusImage.Url()"
+                                   class="image-popup">
+
+                                    <i class="fas fa-search"></i>
+
+                                    <img loading=lazy src="@ikusImage.Url()"
+                                         alt="@ikusImage.Name"
+                                         class="img-fluid" />
+
+                                </a>
+                            </div>
+                        }
+
+                        @foreach (var carImage in carImages)
+                        {
+                            <div class="filtr-item col-sm-6 col-md-3"
+                                 data-category="cars"
+                                 data-title="@carImage.Name">
+                                <a href="@carImage.Url()"
+                                   class="image-popup">
+
+                                    <i class="fas fa-search"></i>
+
+                                    <img loading=lazy src="@carImage.Url()"
+                                         alt="@carImage.Name"
+                                         class="img-fluid" />
+
+                                </a>
+                            </div>
+                        }
+
+                        @foreach (var studentImage in studentImages)
+                        {
+                            <div class="filtr-item col-sm-6 col-md-3"
+                                 data-category="students"
+                                 data-title="@studentImage.Name">
+                                <a href="@studentImage.Url()"
+                                   class="image-popup">
+
+                                    <i class="fas fa-search"></i>
+
+                                    <img loading=lazy src="@studentImage.Url()"
+                                         alt="@studentImage.Name"
+                                         class="img-fluid" />
+
+                                </a>
+                            </div>
+                        }
+
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>

@@ -93,65 +93,12 @@ $(function () {
         }
     });
 
-    // Google Map
-
-    function initialize() {
-
-        //replace this variable with the json you generate in the google maps api wizard tool
-        //Styles Start
-        var styles = [{ "featureType": "landscape", "stylers": [{ "saturation": -100 }, { "lightness": 60 }] }, { "featureType": "road.local", "stylers": [{ "saturation": -100 }, { "lightness": 40 }, { "visibility": "on" }] }, { "featureType": "transit", "stylers": [{ "saturation": -100 }, { "visibility": "simplified" }] }, { "featureType": "administrative.province", "stylers": [{ "visibility": "off" }] }, { "featureType": "water", "stylers": [{ "visibility": "on" }, { "lightness": 30 }] }, { "featureType": "road.highway", "elementType": "geometry.fill", "stylers": [{ "color": "#ef8c25" }, { "lightness": 40 }] }, { "featureType": "road.highway", "elementType": "geometry.stroke", "stylers": [{ "visibility": "off" }] }, { "featureType": "poi.park", "elementType": "geometry.fill", "stylers": [{ "color": "#b6c54c" }, { "lightness": 40 }, { "saturation": -40 }] }, {}];
-        //Styles End
-
-        //Create a styled map using the above styles
-        var styledMap = new google.maps.StyledMapType(styles, { name: "Styled Map" });
-
-        var mapProp = {
-            center: new google.maps.LatLng($(".latitude").val(), $(".longitude").val()), //set the centre of the map. In my case it is the same as the position of the map pin.
-            zoom: 17,
-            scrollwheel: false,
-            mapTypeId: google.maps.MapTypeId.ROADMAP
-        };
-
-        var map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
-
-        //Set the map to use the styled map
-        map.mapTypes.set('map_style', styledMap);
-        map.setMapTypeId('map_style');
-
-        //Create a marker pin to add to the map
-        var marker;
-        marker = new google.maps.Marker({
-            position: new google.maps.LatLng($(".latitude").val(), $(".longitude").val()), //set the position of the pin
-            map: map,
-            title: "",
-            icon: "./assets/map-marker.png",
-            animation: google.maps.Animation.BOUNCE
-        });
+    //Open Action Modal
+    if (sessionStorage.getItem('#myModal') !== 'true' && $(".modal-status").val()) {
+        $('#myModal').modal('show');
+        sessionStorage.setItem('#myModal', 'true');
     }
 
-    if ($('#googleMap').length) {
-        google.maps.event.addDomListener(window, 'load', initialize);
-    }
-
-    // Form Validation
-    (function () {
-        'use strict';
-        window.addEventListener('load', function () {
-            // Fetch all the forms we want to apply custom Bootstrap validation styles to
-            var forms = document.getElementsByClassName('contact-form');
-            // Loop over them and prevent submission
-            var validation = Array.prototype.filter.call(forms, function (form) {
-                form.addEventListener('submit', function (event) {
-                    if (form.checkValidity() === false) {
-                        event.preventDefault();
-                        event.stopPropagation();
-                    }
-                    form.classList.add('was-validated');
-                }, false);
-            });
-        }, false);
-
-    })();
 })
 
 $(".counter").counter();

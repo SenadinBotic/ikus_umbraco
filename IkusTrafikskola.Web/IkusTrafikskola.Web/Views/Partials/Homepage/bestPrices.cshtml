@@ -1,0 +1,58 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage
+
+@{
+
+    var pricePackages = Model.Root().Descendants<Price>();
+
+    List<PricePackage> priceList = new List<PricePackage>();
+    priceList.AddRange(pricePackages.SelectMany(x => x.PackagePriceList.Where(y => y.PackageVisibility)).Distinct().ToList());
+}
+
+<div class="container my-4 my-md-5">
+    <div class="row justify-content-center">
+
+        <div class="col-12 mb-5">
+            <div class="section-intro centered">
+
+                <div>@Umbraco.GetDictionaryValue("Homepage.Price.Subtitle")</div>
+
+                <h2>@Umbraco.GetDictionaryValue("Homepage.Price.Title")</h2>
+
+            </div>
+        </div>
+
+        @foreach (var item in priceList)
+        {
+
+            var name = item.Value("priceName");
+            var price = item.Value("packagePrice");
+            var ordPrice = item.Value("packageOrdPrice");
+
+            var packageTextList = item.Value<IEnumerable<IPublishedElement>>("packageTextList");
+
+            <div class="col-sm-6 col-lg-3 mb-4">
+                <div class="pricing">
+
+                    <div class="price-title">
+                        @name
+                    </div>
+
+                    <div class="price">
+                        <span><sup>Kr</sup>@price</span>
+                        <i>@Umbraco.GetDictionaryValue("Price.OrdPrice") @ordPrice Kr</i>
+                    </div>
+
+                    <ul>
+                        @foreach (var list in packageTextList)
+                        {
+                            <li>@list.Value("textListItem")</li>
+                        }
+                    </ul>
+
+                </div>
+            </div>
+
+        }
+
+    </div>
+</div>

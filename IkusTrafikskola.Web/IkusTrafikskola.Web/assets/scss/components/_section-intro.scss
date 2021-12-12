@@ -10,6 +10,7 @@
 
         h2 {
             color: $white;
+
             &:after {
                 opacity: .2;
             }
@@ -49,12 +50,12 @@
         & {
             text-align: center;
 
-                h2 {
-                    &:before,
-                    &:after {
-                        @include absolute-h-centered;
-                    }
+            h2 {
+                &:before,
+                &:after {
+                    @include absolute-h-centered;
                 }
+            }
         }
     }
 
@@ -62,6 +63,7 @@
     p {
         font-style: italic;
         color: $gray;
+        font-size: .875em;
     }
 
     div {

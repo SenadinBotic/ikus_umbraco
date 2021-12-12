@@ -1,0 +1,100 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage
+@using Umbraco.Web.Models
+
+@{
+    var slides = Model.Value<IEnumerable<IPublishedElement>>("homepageBanner");
+}
+
+<div id="heroBanner"
+     class="hero-banner carousel slide"
+     data-bs-ride="carousel"
+     data-interval="true">
+
+    <div class="carousel-inner h-100">
+        @foreach (var slide in slides)
+        {
+            var subtitle = slide.Value("bannerSubtitle");
+            var title = slide.Value("bannerTitle");
+            var description = slide.Value("bannerDescription");
+            var link = slide.Value<Link>("bannerButton");
+            var image = slide.Value<IPublishedContent>("bannerImage");
+
+            string imageUrl = "";
+            if (image != null)
+            {
+                imageUrl = image.Url();
+            }
+
+            <div class="carousel-item @( slides.IndexOf(slide) == 0 ? "active" : "")">
+
+                <div class="slide-bg"
+                     style="background-image: url('@imageUrl')">
+                </div>
+
+                <div class="carousel-item-content text-white position-relative text-center">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-12">
+                                <span class="d-block text-uppercase pb-1"
+                                      data-aos="fade-up"
+                                      data-aos-delay="600"
+                                      data-aos-duration="900">
+                                    @subtitle
+                                </span>
+
+                                <h2 class="text-uppercase"
+                                    data-aos="fade-up"
+                                    data-aos-delay="1000"
+                                    data-aos-duration="900">
+                                    @title
+                                </h2>
+
+                                <i class="d-block fw-light pb-5"
+                                   data-aos="fade-up"
+                                   data-aos-delay="1400"
+                                   data-aos-duration="900">
+                                    @description
+                                </i>
+
+                                <a href="@link.Url" 
+                                   target="@link.Target"
+                                   class="btn btn-primary"
+                                   data-aos="fade-up"
+                                   data-aos-delay="1800"
+                                   data-aos-duration="900">
+                                    @link.Name
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        }
+    </div>
+
+    <div class="carousel-indicators">
+
+        <button type="button"
+                data-bs-target="#heroBanner"
+                data-bs-slide-to="0"
+                class="active"
+                aria-current="true"
+                aria-label="Hero Slide 1">
+        </button>
+
+        <button type="button"
+                data-bs-target="#heroBanner"
+                data-bs-slide-to="1"
+                aria-label="Hero Slide 2">
+        </button>
+
+        <button type="button"
+                data-bs-target="#heroBanner"
+                data-bs-slide-to="2"
+                aria-label="Hero Slide 3">
+        </button>
+
+    </div>
+
+</div>

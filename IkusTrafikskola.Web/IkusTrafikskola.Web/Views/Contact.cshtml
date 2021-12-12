@@ -1,0 +1,39 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage
+
+@{
+    Layout = "Master.cshtml";
+
+    var title = Model.Value("contactTitle");
+    var description = Model.Value<IHtmlString>("contactDescription");
+}
+
+@Html.Partial("~/Views/Partials/contentIntro.cshtml")
+
+<div class="container my-4 mt-md-6 mb-md-5">
+    <div class="row">
+        <div class="col-lg-7">
+            <div class="section-intro mb-5 mb-lg-0">
+                <h2>@title</h2>
+
+                @description
+
+                @{ Html.RenderAction("RenderForm", "ContactSurface"); }
+
+            </div>
+        </div>
+
+        @Html.Partial("~/Views/Partials/Contact/contactInfo.cshtml")
+
+    </div>
+</div>
+
+<div class="container my-4 my-md-6">
+    <div class="row">
+        <div class="col-12">
+            <div class="place-map">
+                <div id="map"></div>
+                @Html.Partial("~/Views/Partials/googleMap.cshtml")
+            </div>
+        </div>
+    </div>
+</div>
