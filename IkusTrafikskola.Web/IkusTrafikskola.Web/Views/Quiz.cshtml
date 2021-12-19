@@ -1,0 +1,39 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage
+
+@{
+    Layout = "Master.cshtml";
+
+    string Email = Request.Cookies["SignedInUser"] != null ? Request.Cookies["SignedInUser"].Value.ToString() : "";
+    Email = Email.Replace("%40", "@");
+    var usersList = Model.Value<IEnumerable<IPublishedElement>>("emailValidation");
+
+    bool isSignedIn = false;
+
+    foreach (var fieldset in usersList)
+    {
+        var email = fieldset.Value<string>("userMail");
+
+        if (email.ToLower() == Email.ToLower())
+        {
+            isSignedIn = true;
+        }
+    }
+}
+
+@Html.Partial("~/Views/Partials/contentIntro.cshtml")
+
+<div class="container">
+    <div class="row">
+
+        @if (!isSignedIn )
+        {
+            //{ Html.RenderAction("RenderWelcomeSection", "TestPage"); }
+            { Html.RenderAction("RenderCategorySection", "TestPage"); }
+        }
+        else
+        {
+            { Html.RenderAction("RenderCategorySection", "TestPage"); }
+        }
+
+    </div>
+</div>

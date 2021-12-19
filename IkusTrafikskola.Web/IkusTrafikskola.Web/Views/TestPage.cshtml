@@ -1,0 +1,12 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage
+@{
+    Layout = "Master.cshtml";
+}
+
+@Html.Partial("~/Views/Partials/contentIntro.cshtml")
+
+<div class="container">
+    <div class="row">
+        @{ Html.RenderAction("RenderTestSection", "TestPage"); }
+    </div>
+</div>

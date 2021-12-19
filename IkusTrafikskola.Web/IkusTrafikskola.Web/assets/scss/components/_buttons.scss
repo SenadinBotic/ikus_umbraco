@@ -46,22 +46,31 @@ a {
     &:active,
     &:hover {
         @include transform(translateY(-3px));
-        // @include box-shadow-lg();
-    }
-
-    &-primary,
-    &-outline-primary {
-        color: $white;
-
-        &:focus,
-        &:active,
-        &:hover {
-            color: $white;
-        }
     }
 
     &.contact-submit {
         padding-left: 15px;
-        padding-right: 15px;    
+        padding-right: 15px;
+    }
+
+    &-outline-primary {
+        &:hover,
+        &:focus,
+        &:active {
+            background: $primary;
+            color: $white;
+        }
+    }
+
+    &-primary,
+    &-danger,
+    &-success {
+        color: $white;
+
+        &:hover,
+        &:focus,
+        &:active {
+            color: $white;
+        }
     }
 }

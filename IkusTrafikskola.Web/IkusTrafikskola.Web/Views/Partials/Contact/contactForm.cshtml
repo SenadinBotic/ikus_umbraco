@@ -1,5 +1,4 @@
-﻿
-@inherits UmbracoViewPage<ContactViewModel>
+﻿@inherits UmbracoViewPage<ContactViewModel>
 @using IkusTrafikskola.Core.ViewModels
 @using IkusTrafikskola.Core.Contollers
 @using ClientDependency.Core.Mvc
@@ -29,34 +28,44 @@
 
         @Html.HiddenFor(m => m.ContactFormId)
 
-        <div class="row mb-5">
-            <div class="col-md-6 mb-4">
-                <label>@Umbraco.GetDictionaryValue("Contact.Label.FirstName")</label>
-                @Html.TextBoxFor(m => m.Name, new { @class = "form-control", placeholder = Umbraco.GetDictionaryValue("Contact.Placeholder.FirstName") })
-                @Html.ValidationMessageFor(m => m.Name)
-            </div>
-            <div class="col-md-6 mb-4">
-                <label>@Umbraco.GetDictionaryValue("Contact.Label.LastName")</label>
-                @Html.TextBoxFor(m => m.LastName, new { @class = "form-control", placeholder = Umbraco.GetDictionaryValue("Contact.Placeholder.LastName") })
-                @Html.ValidationMessageFor(m => m.LastName)
-            </div>
-            <div class="col-md-6 mb-4">
-                <label>@Umbraco.GetDictionaryValue("Contact.Label.Email")</label>
-                @Html.TextBoxFor(m => m.Email, new { @class = "form-control", placeholder = Umbraco.GetDictionaryValue("Contact.Placeholder.Email") })
-                @Html.ValidationMessageFor(m => m.Email)
-            </div>
-            <div class="col-md-6 mb-4">
-                <label>@Umbraco.GetDictionaryValue("Contact.Label.Subject")</label>
-                @Html.TextBoxFor(m => m.Subject, new { @class = "form-control", placeholder = Umbraco.GetDictionaryValue("Contact.Placeholder.Subject") })
-                @Html.ValidationMessageFor(m => m.Subject)
-            </div>
-
-            <div class="col-md-12">
-                <label>@Umbraco.GetDictionaryValue("Contact.Label.Message")</label>
-                @Html.TextAreaFor(m => m.Message, new { @class = "form-control", placeholder = Umbraco.GetDictionaryValue("Contact.Placeholder.Message") })
-                @Html.ValidationMessageFor(m => m.Message)
-            </div>
+    <div class="row mb-5">
+        <div class="col-md-6 mb-4">
+            <label>@Umbraco.GetDictionaryValue("Contact.Label.FirstName")</label>
+            @Html.TextBoxFor(m => m.Name, new { @class = "form-control", placeholder = Umbraco.GetDictionaryValue("Contact.Placeholder.FirstName") })
+            @Html.ValidationMessageFor(m => m.Name)
         </div>
+        <div class="col-md-6 mb-4">
+            <label>@Umbraco.GetDictionaryValue("Contact.Label.LastName")</label>
+            @Html.TextBoxFor(m => m.LastName, new { @class = "form-control", placeholder = Umbraco.GetDictionaryValue("Contact.Placeholder.LastName") })
+            @Html.ValidationMessageFor(m => m.LastName)
+        </div>
+        <div class="col-md-6 mb-4">
+            <label>@Umbraco.GetDictionaryValue("Contact.Label.Email")</label>
+            @Html.TextBoxFor(m => m.Email, new { @class = "form-control", placeholder = Umbraco.GetDictionaryValue("Contact.Placeholder.Email") })
+            @Html.ValidationMessageFor(m => m.Email)
+        </div>
+        <div class="col-md-6 mb-4">
+            <label>@Umbraco.GetDictionaryValue("Contact.Label.Phone")</label>
+            @Html.TextBoxFor(m => m.Phone, new { @class = "form-control", placeholder = Umbraco.GetDictionaryValue("Contact.Placeholder.Phone") })
+            @Html.ValidationMessageFor(m => m.Phone)
+        </div>
+        <div class="col-md-6 mb-4">
+            <label>@Umbraco.GetDictionaryValue("Contact.Label.PersonalNumber")</label>
+            @Html.TextBoxFor(m => m.PersonalNumber, new { @class = "form-control", placeholder = Umbraco.GetDictionaryValue("Contact.Placeholder.PersonalNumber") })
+            @Html.ValidationMessageFor(m => m.PersonalNumber)
+        </div>
+        <div class="col-md-6 mb-4">
+            <label>@Umbraco.GetDictionaryValue("Contact.Label.Subject")</label>
+            @Html.TextBoxFor(m => m.Subject, new { @class = "form-control", placeholder = Umbraco.GetDictionaryValue("Contact.Placeholder.Subject") })
+            @Html.ValidationMessageFor(m => m.Subject)
+        </div>
+
+        <div class="col-md-12">
+            <label>@Umbraco.GetDictionaryValue("Contact.Label.Message")</label>
+            @Html.TextAreaFor(m => m.Message, new { @class = "form-control", placeholder = Umbraco.GetDictionaryValue("Contact.Placeholder.Message") })
+            @Html.ValidationMessageFor(m => m.Message)
+        </div>
+    </div>
         <div class="text-center">
             <button class="btn btn-primary btn-sm contact-submit"
                     type="submit">

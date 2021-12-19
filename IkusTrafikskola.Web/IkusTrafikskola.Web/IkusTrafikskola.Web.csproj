@@ -444,6 +444,7 @@
     <Content Include="assets\scripts\contactForm.js" />
     <Content Include="assets\scripts\counter.js" />
     <Content Include="assets\scripts\main.js" />
+    <Content Include="assets\scripts\test.js" />
     <Content Include="assets\scss\style.css">
       <DependentUpon>style.scss</DependentUpon>
     </Content>
@@ -3057,6 +3058,7 @@
     <Content Include="assets\scss\components\_pagination.scss" />
     <Content Include="App_Plugins\FaIconpicker\package.manifest" />
     <Content Include="assets\scss\components\_modal.scss" />
+    <Content Include="assets\scss\components\_test.scss" />
     <None Include="compilerconfig.json" />
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
@@ -3187,7 +3189,6 @@
     <Content Include="Views\Links.cshtml" />
     <Content Include="Views\Price.cshtml" />
     <Content Include="Views\Search.cshtml" />
-    <Content Include="Views\Test.cshtml" />
     <Content Include="Views\Partials\Contact\contactForm.cshtml" />
     <Content Include="Views\Partials\Contact\contactInfo.cshtml" />
     <Content Include="Views\Partials\Contact\contactResult.cshtml" />
@@ -3202,6 +3203,11 @@
     <Content Include="Views\Partials\Homepage\openingHours.cshtml" />
     <Content Include="Views\Partials\Homepage\testimonials.cshtml" />
     <Content Include="Views\Partials\actionModal.cshtml" />
+    <Content Include="Views\Partials\TestPage\categoryPage.cshtml" />
+    <Content Include="Views\Partials\TestPage\testContent.cshtml" />
+    <Content Include="Views\Partials\TestPage\welcomePage.cshtml" />
+    <Content Include="Views\TestPage.cshtml" />
+    <Content Include="Views\Quiz.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -3219,9 +3225,7 @@
     <Analyzer Include="..\packages\Microsoft.CodeAnalysis.Analyzers.2.6.1\analyzers\dotnet\cs\Microsoft.CodeAnalysis.Analyzers.dll" />
     <Analyzer Include="..\packages\Microsoft.CodeAnalysis.Analyzers.2.6.1\analyzers\dotnet\cs\Microsoft.CodeAnalysis.CSharp.Analyzers.dll" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\Models\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

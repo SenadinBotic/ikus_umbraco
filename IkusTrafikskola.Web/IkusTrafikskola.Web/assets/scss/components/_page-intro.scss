@@ -1,22 +1,44 @@
 .page-intro {
     position: relative;
-    padding: 80px 0px 60px;
+    padding: 80px 60px;
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center center;
     background-attachment: fixed;
     border-bottom: 5px solid $primary;
     text-align: center;
-    
+
+    @include media-breakpoint-only(xs) {
+        & {
+            padding: 60px 20px;
+        }
+    }
+
     @include media-breakpoint-only(lg) {
         & {
-            padding: 100px 0px 80px;
+            padding: 100px 80px;
         }
     }
 
     @include media-breakpoint-up(xl) {
         & {
-            padding: 120px 0px 100px;
+            padding: 120px 100px;
+        }
+    }
+
+    &.small-height {
+        padding: 60px 20px;
+
+        @include media-breakpoint-only(lg) {
+            & {
+                padding: 60px;
+            }
+        }
+
+        @include media-breakpoint-up(xl) {
+            & {
+                padding: 60px;
+            }
         }
     }
 
