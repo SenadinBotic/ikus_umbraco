@@ -1,0 +1,73 @@
+.hero-banner {
+    position: relative;
+    height: 100vh;
+
+    @include media-breakpoint-up(md) {
+        & {
+            height: 672px;
+        }
+    }
+
+    .carousel-item {
+        height: 100%;
+    }
+
+    .slide-bg {
+        background-size: cover;
+        background-position: center center;
+        background-repeat: no-repeat;
+        @include absolute-cover;
+
+        &:after {
+            content: "";
+            background-color: rgba($black, .3);
+            @include absolute-cover;
+        }
+    }
+
+    .carousel-indicators {
+        margin: 0;
+        bottom: 20px;
+
+        button {
+            border-radius: 100%;
+            width: 18px;
+            height: 18px;
+            margin-left: 10px;
+            margin-right: 10px;
+            @include transition(all .3s);
+
+            &:hover {
+                opacity: 1;
+                background-color: $primary;
+            }
+        }
+
+        .active {
+            background-color: $primary;
+        }
+    }
+
+    .carousel-item-content {
+        @include centered;
+
+        h2 {
+            @include media-breakpoint-up(md) {
+                & {
+                    font-size: 3rem;
+                }
+            }
+        }
+
+        span {
+            font-size: 1rem;
+
+            @include media-breakpoint-up(md) {
+                & {
+                    font-size: 1.3rem;
+                }
+            }
+        }
+
+    }
+}

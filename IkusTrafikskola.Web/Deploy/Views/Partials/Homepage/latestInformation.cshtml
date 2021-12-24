@@ -1,0 +1,52 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage
+
+@{
+    var latestInformations = Model.Value("latestInformations");
+    var schedules = Model.Value<IEnumerable<IPublishedElement>>("schedules");
+}
+
+<div class="latest-information bg-light py-4 py-md-5 py-lg-6">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-md-6 pe-md-6 pe-lg-7 mb-4 md-mb-0">
+
+                <div class="section-intro mb-5 mb-md-0">
+                    <div>@Umbraco.GetDictionaryValue("Homepage.LatestInformation.Subtitle")</div>
+
+                    <h2>@Umbraco.GetDictionaryValue("Homepage.LatestInformation.Title")</h2>
+                </div>
+
+                @latestInformations
+
+            </div>
+
+            <div class="col-md-6">
+
+                <div class="section-intro mb-5 mb-md-0">
+                    <div>@Umbraco.GetDictionaryValue("Homepage.ScheduleInformation.Subtitle")</div>
+
+                    <h2>@Umbraco.GetDictionaryValue("Homepage.ScheduleInformation.Title")</h2>
+                </div>
+
+                @foreach (var item in schedules)
+                {
+                    var title = item.Value("scheduleName");
+                    var schedulesItem = item.Value<IEnumerable<IPublishedElement>>("scheduleList");
+
+                    <div class="time-info">
+                        <h3>@title:</h3>
+
+                        <ul>
+                            @foreach (var innerItem in schedulesItem)
+                            {
+                                <li>@innerItem.Value("scheduleItem")</li>
+                            }
+                        </ul>
+                    </div>
+                }
+            </div>
+
+        </div>
+    </div>
+</div>

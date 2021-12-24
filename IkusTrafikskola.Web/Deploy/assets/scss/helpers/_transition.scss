@@ -1,0 +1,128 @@
+@mixin transform($value) {
+    -moz-transform: $value;
+    -ms-transform: $value;
+    -o-transform: $value;
+    -webkit-transform: $value;
+    transform: $value;
+}
+
+@mixin transition($value) {
+    @if $enable-transitions {
+        -moz-transition: $value;
+        -o-transition: $value;
+        -webkit-transition: $value;
+        transition: $value;
+    }
+}
+
+@mixin transform-origin($value) {
+    -moz-transform-origin: $value;
+    -ms-transform-origin: $value;
+    -o-transform-origin: $value;
+    -webkit-transform-origin: $value;
+    transform-origin: $value;
+}
+
+@mixin delay($value) {
+    -moz-transition-delay: $value;
+    -o-transition-delay: $value;
+    -webkit-transition-delay: $value;
+    transition-delay: $value;
+}
+
+@mixin animation-name($value) {
+    -moz-animation-name: $value;
+    -o-animation-name: $value;
+    -webkit-animation-name: $value;
+    animation-name: $value;
+}
+
+@mixin animation-timing($value) {
+    -moz-animation-timing-function: $value;
+    -o-animation-timing-function: $value;
+    -webkit-animation-timing-function: $value;
+    animation-timing-function: $value;
+}
+
+@mixin animation-duration($value) {
+    -moz-animation-duration: $value;
+    -o-animation-duration: $value;
+    -webkit-animation-duration: $value;
+    animation-duration: $value;
+}
+
+@mixin animation-iteration($value) {
+    -moz-animation-iteration-count: $value;
+    -o-animation-iteration-count: $value;
+    -webkit-animation-iteration-count: $value;
+    animation-iteration-count: $value;
+}
+
+
+@mixin filter($value) {
+    -moz-filter: $value; 
+    -ms-filter: $value;
+    -webkit-filter: $value;
+    filter: $value;
+}
+
+
+// Moving animation
+
+@mixin translate-start {
+    @include transform(translate3d(0,0,0));
+}
+
+@mixin translate-top {
+    @include transform(translate3d(0,-100%,0));
+}
+
+@mixin translate-top-50 {
+    @include transform(translate3d(0,-50%,0));
+}
+
+@mixin translate-top-sm {
+    @include transform(translate3d(0,-10px,0));
+}
+
+@mixin translate-left {
+    @include transform(translate3d(-100%,0,0));
+}
+
+@mixin translate-left-50 {
+    @include transform(translate3d(-50%,0,0));
+}
+
+@mixin translate-left-sm {
+    @include transform(translate3d(-10px,0,0));
+}
+
+@mixin translate-right {
+    @include transform(translate3d(100%,0,0));
+}
+
+@mixin translate-right-50 {
+  
+    @include transform(translate3d(50%,0,0));
+}
+
+@mixin translate-right-sm {
+
+    @include transform(translate3d(10px,0,0));
+}
+
+@mixin translate-bottom {
+    @include transform(translate3d(0,100%,0));
+}
+
+@mixin translate-bottom-50 {
+    @include transform(translate3d(0,50%,0));
+}
+
+@mixin translate-bottom-sm {
+    @include transform(translate3d(0,10px,0));
+}
+
+@mixin short-transition {
+    @include transition(all .3s);
+}

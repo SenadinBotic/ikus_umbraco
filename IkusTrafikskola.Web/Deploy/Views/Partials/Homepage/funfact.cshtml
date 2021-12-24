@@ -1,0 +1,43 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage
+
+@{
+    var image = Model.Value<IPublishedContent>("factsBackgroundImage");
+    var facts = Model.Value<IEnumerable<IPublishedElement>>("factList");
+
+    string imageUrl = "";
+    if (image != null)
+    {
+        imageUrl = image.Url();
+    }
+}
+
+<div class="funfact-section"
+     style="@(!string.IsNullOrWhiteSpace(imageUrl) ? "background-image: url('" + imageUrl + "')" : "background-image: url('/assets/images/bg-img.jpg')" )">
+
+    <div class="container">
+        <div class="row justify-content-center">
+            @foreach (var fact in facts)
+            {
+                var name = fact.Value("factName");
+                var content = fact.Value("factContent");
+                var icon = fact.Value("factIcon");
+
+                <div class="col-sm-6 col-md-3 mb-5">
+                    <div class="funfact-item position-relative text-center">
+                        <i class="@icon text-white mb-3"></i>
+                        <h2 class="text-white counter"
+                            data-start="0"
+                            data-stop="@content"
+                            data-duration="1000"
+                            data-suffix>
+                            @content
+                        </h2>
+                        <i class="text-white">@name</i>
+                    </div>
+                </div>
+
+            }
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,196 @@
+.header-search-container {
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 0;
+    opacity: 0;
+    z-index: -9999;
+    background-color: $light;
+    @include transition(height 0.4s cubic-bezier(0.4, 0, 0.2, 1));
+
+    .form-inline {
+        margin-top: 100px;
+        height: 0;
+        @include transition(height 0.2s cubic-bezier(0.4, 0, 0.2, 1));
+
+        input {
+            top: 0;
+            padding: 0 50px 0 20px;
+            @include box-shadow(0 0 15px rgba(0, 0, 0, 0.15));
+
+            &::placeholder {
+                /* Chrome, Firefox, Opera, Safari 10.1+ */
+                color: $dark;
+            }
+            &:-ms-input-placeholder {
+                /* Internet Explorer 10-11 */
+                color: $dark;
+            }
+            &::-ms-input-placeholder {
+                /* Microsoft Edge */
+                color: $dark;
+            }
+        }
+    }
+
+    button {
+        outline: none;
+        border: none;
+        background-color: transparent;
+        position: absolute;
+        right: 20px;
+        top: 20px;
+    }
+
+    .fa-search {
+        font-size: 1.4rem;
+        color: rgba($dark, .6);
+        @include short-transition;
+
+        &:hover {
+            opacity: .7;
+        }
+    }
+
+    .fa-times-circle {
+        font-size: 2rem;
+        position: absolute;
+        top: 30px;
+        right: 15px;
+        color: rgba($dark, .6);
+        cursor: pointer;
+        @include short-transition;
+
+        &:hover {
+            opacity: .7;
+        }
+    }
+
+    @media all and (-ms-high-contrast:none) {
+        display: none;
+    }
+}
+
+.show-search {
+    .header-search-container {
+        height: 100%;
+        opacity: 1;
+        z-index: 999999;
+
+        @media all and (-ms-high-contrast: none) {
+            display: block;
+        }
+
+        .fa-times-circle {
+            z-index: 1;
+        }
+    }
+
+    .form-inline {
+        height: 64px;
+        opacity: 1;
+    }
+}
+
+.search-container {
+    input {
+        top: 0;
+        padding: 0 50px 0 20px;
+        height: 64px;
+        @include box-shadow(0 0 15px rgba(0, 0, 0, 0.15));
+
+        &::placeholder {
+            /* Chrome, Firefox, Opera, Safari 10.1+ */
+            color: $dark;
+        }
+
+        &:-ms-input-placeholder {
+            /* Internet Explorer 10-11 */
+            color: $dark;
+        }
+
+        &::-ms-input-placeholder {
+            /* Microsoft Edge */
+            color: $dark;
+        }
+    }
+
+    .fa-search {
+        font-size: 1.4rem;
+        color: $dark;
+        cursor: pointer;
+        @include transition(all .3s ease);
+
+        &:hover {
+            opacity: .7;
+        }
+    }
+
+    .fa-times-circle {
+        font-size: 2rem;
+        position: absolute;
+        top: 30px;
+        right: 15px;
+        color: $dark;
+        cursor: pointer;
+        @include transition(all .3s ease);
+        z-index: -9999;
+
+        &:hover {
+            opacity: .7;
+        }
+    }
+
+    button {
+        outline: none;
+        border: none;
+        background-color: transparent;
+        position: absolute;
+        right: 30px;
+        top: 21px;
+
+        &:focus {
+            outline: none;
+            box-shadow: none;
+        }
+    }
+
+    .post-preview {
+        border-bottom: 1px solid #dcdcdc;
+
+        a {
+            font-weight: 500;
+            color: $primary;
+            position: relative;
+
+            &:hover {
+                &:after {
+                    visibility: visible;
+                    @include transform(scaleX(1));
+                }
+            }
+
+            &:after {
+                content: "";
+                position: absolute;
+                width: 100%;
+                height: 1px;
+                bottom: 0;
+                left: 0;
+                visibility: hidden;
+                background: $primary;
+                @include transform(scaleX(0));
+                @include transition(all 0.3s ease-in-out 0s);
+            }
+        }
+
+        p {
+            font-size: .875rem;
+            font-style: italic;
+            color: $dark;
+        }
+    }
+}

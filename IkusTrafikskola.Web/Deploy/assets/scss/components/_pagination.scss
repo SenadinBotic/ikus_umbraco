@@ -1,0 +1,43 @@
+﻿.pagination {
+    .paging-block {
+        text-align: center;
+
+        &.text-center {
+            border-radius: 16px;
+            width: auto;
+            padding: 6px 25px;
+            background-color: $white;
+            @include box-shadow-xs;
+
+            span {
+                font-size: .875rem;
+                color: $dark;
+            }
+        }
+
+        a {
+            padding: 6px;
+            border-radius: 100%;
+            width: 39px;
+            background-color: $white;
+            @include box-shadow-xs;
+
+            &:active,
+            &:hover,
+            &:focus {
+                @include box-shadow-xs;
+            }
+        }
+
+        .fas {
+            color: $primary;
+            position: relative;
+            top: 2px;
+            @include transition(all .3s);
+
+            &:hover {
+                opacity: .7
+            }
+        }
+    }
+}

@@ -1,0 +1,59 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage
+
+@{
+    var intro = Model.Value("workingHoursIntro");
+    var workingPackage = Model.Value<IEnumerable<IPublishedElement>>("workingHours");
+}
+
+<div class="bg-primary py-4 py-md-5 py-lg-6">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mx-auto">
+                <div class="section-intro white centered mb-4 mb-lg-5">
+
+                    <div>@Umbraco.GetDictionaryValue("Homepage.Hours.Subtitle")</div>
+
+                    <h2>@Umbraco.GetDictionaryValue("Homepage.Hours.Title")</h2>
+
+                    @intro
+
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-9 col-lg-7 col-xl-5 mx-auto">
+                @{ Boolean last = true; }
+
+                @foreach (var items in workingPackage)
+                {
+                    var title = items.Value("workingTitle");
+                    var hours = items.Value<IEnumerable<IPublishedElement>>("workingHours");
+
+                    if (title != null && !String.IsNullOrEmpty(title.ToString()))
+                    {
+                        <h3 class="h4 text-white">
+                            @title
+                        </h3>
+                    }
+
+
+                    <ul class="time-list @( last ? "mb-4" : "" )">
+                        @foreach (var item in hours)
+                        {
+                            var period = item.Value("workingSection");
+                            var time = item.Value("workingTime");
+
+                            <li>
+                                <span>@period</span>
+                                <span>@time</span>
+                            </li>
+                        }
+                    </ul>
+
+                    last = false;
+                }
+            </div>
+        </div>
+    </div>
+</div>

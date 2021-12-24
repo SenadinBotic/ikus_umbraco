@@ -1,0 +1,67 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage
+@{
+    Layout = "Master.cshtml";
+
+    var pageContentIntro = Model.Value("pageContentIntro");
+    var pageContentAdditional = Model.Value("pageContentAdditional");
+    var pageContentMore = Model.Value("pageContentMore");
+
+    var pricePackageList = Model.Value<IEnumerable<IPublishedElement>>("packagePriceList");
+}
+
+@Html.Partial("~/Views/Partials/contentIntro.cshtml")
+
+<div class="container py-4 py-md-5">
+    <div class="row justify-content-center">
+
+        <div class="col-12 mb-4 mb-md-5 mb-lg-6">
+            @pageContentIntro
+        </div>
+
+        @foreach (var package in pricePackageList)
+        {
+            var name = package.Value("priceName");
+            var price = package.Value("packagePrice");
+            var ordPrice = package.Value("packageOrdPrice");
+
+            var packageTextList = package.Value<IEnumerable<IPublishedElement>>("packageTextList");
+
+            <div class="col-sm-6 col-lg-3 mb-4">
+                <div class="pricing">
+
+                    <div class="price-title">
+                        @name
+                    </div>
+
+                    <div class="price">
+                        <span><sup>Kr</sup>@price</span>
+                        <i>@Umbraco.GetDictionaryValue("Price.OrdPrice") @ordPrice Kr</i>
+                    </div>
+
+                    <ul>
+                        @foreach (var list in packageTextList) 
+                        {
+                            <li>@list.Value("textListItem")</li>
+                        } 
+                    </ul>
+
+                </div>
+            </div>
+        }
+
+        @if (pageContentAdditional != null && !String.IsNullOrEmpty(pageContentAdditional.ToString()))
+        {
+            <div class="col-12 mt-4 mt-md-5 mt-lg-6">
+                @pageContentAdditional
+            </div>
+        }
+
+        @if (pageContentMore != null && !String.IsNullOrEmpty(pageContentMore.ToString()))
+        {
+            <div class="col-12 mt-4 mt-md-5 mt-lg-6">
+                @pageContentMore
+            </div>
+        }
+
+    </div>
+</div>

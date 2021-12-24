@@ -1,0 +1,108 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage
+@using IkusTrafikskola.Core.Helpers
+
+@{
+    Layout = "Master.cshtml";
+
+    var blogList = Model.Root().Descendants<Blog>().Where(x => x.IsVisible()).OrderByDescending(y => y.BlogDate);
+
+    var fallbackPageSize = 9;
+
+    var pageNumber = QueryStringHelper.GetIntFromQueryString(Request, "page", 1);
+    var pageSize = QueryStringHelper.GetIntFromQueryString(Request, "size", fallbackPageSize);
+
+    var pageOfBlogs = blogList.Skip((pageNumber - 1) * pageSize).Take(pageSize);
+    var totalItemCount = blogList.Count();
+    var pageCount = totalItemCount > 0 ? Math.Ceiling((double)totalItemCount / pageSize) : 1;
+}
+
+@Html.Partial("~/Views/Partials/contentIntro.cshtml")
+
+<div class="container mt-4 mb-3 mt-md-7 mb-md-5">
+
+    <div class="row justify-content-center">
+
+        @foreach (var blog in pageOfBlogs)
+        {
+            string imageUrl = "";
+            if (blog.BlogImage != null)
+            {
+                imageUrl = blog.BlogImage.Url();
+            }
+
+            <div class="col-sm-4">
+                <a href="@blog.Url()"
+                   class="blog-item">
+
+                    @if (blog.BlogImage != null)
+                    {
+                        <img loading=lazy class="img-fluid"
+                             src="@imageUrl"
+                             alt="@blog.BlogImage.Name">
+                    }
+
+                    <div class="blog-item-content">
+                        <h3>@blog.BlogTitle</h3>
+
+                        <div class="author">
+                            <i class="fas fa-user-edit text-primary"></i>
+                            @Umbraco.GetDictionaryValue("Blog.By")
+                            @blog.BlogAuthor
+                        </div>
+
+                        <div class="content">
+                            @blog.BlogText
+                        </div>
+
+                        <i class="text-primary">
+                            @Umbraco.GetDictionaryValue("Blog.ReadMore")
+                        </i>
+                    </div>
+
+                </a>
+            </div>
+        }
+
+        @if (pageCount > 1)
+        {
+            <div class="col-12">
+                <div id="paging" class="pagination clearfix align-content-center justify-content-center flex-wrap my-3">
+                    @if (pageCount > 1)
+                    {
+                        <div class="paging-block">
+                            @if (pageNumber > 1)
+                            {
+                                <a class="btn btn-link" href="@($"?page={pageNumber - 1}&size={pageSize}")">
+                                    <i class="fas fa-chevron-left"></i>
+                                </a>
+                            }
+                            else
+                            {
+                                @Html.Raw("&nbsp;")
+                            }
+                        </div>
+                        <div class="paging-block text-center mx-3">
+                            <span>@pageNumber od @pageCount</span>
+                        </div>
+                        <div class="paging-block">
+                            @if (pageNumber < pageCount)
+                            {
+                                <a class="btn btn-link" href="@($"?page={pageNumber + 1}&size={pageSize}")">
+                                    <i class="fas fa-chevron-right"></i>
+                                </a>
+                            }
+                            else
+                            {
+                                @Html.Raw("&nbsp;")
+                            }
+                        </div>
+                    }
+                </div>
+            </div>
+        }
+
+    </div>
+
+
+</div>
+

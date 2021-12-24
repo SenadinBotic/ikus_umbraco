@@ -1,0 +1,20 @@
+#toTopBtn {
+    position: fixed;
+    bottom: 30px;
+    right: 20px;
+    z-index: 9;
+    border-radius: 100%;
+    width: 50px;
+    height: 50px;
+    background-color: $primary;
+
+    &:after {
+        display: none;
+    }
+
+    i {
+        font-size: 1.4rem;
+        line-height: 1;
+        @include centered;
+    }
+}

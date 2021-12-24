@@ -1,0 +1,108 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage
+@{
+    Layout = "Master.cshtml";
+
+    var blogTitle = Model.Value("blogTitle");
+    var blogAuthor = Model.Value("blogAuthor");
+    var blogTimeToRead = Model.Value("blogTimeToRead");
+    var blogDate = Model.Value<DateTime>("blogDate").ToString("dd.MM.yyyy");
+    var blogText = Model.Value<IHtmlString>("blogText");
+    var blogImage = Model.Value<IPublishedContent>("blogImage");
+    var blogTags = Model.GetProperty("blogTags").Value<IEnumerable<string>>();
+    var day = Model.Value<DateTime>("blogDate").ToString("dd");
+    var month = Model.Value<DateTime>("blogDate").ToString("MMM");
+
+    string imageUrl = "";
+    if (blogImage != null)
+    {
+        imageUrl = blogImage.Url();
+    }
+}
+
+@Html.Partial("~/Views/Partials/contentIntro.cshtml")
+
+<div class="container py-4 py-md-5 py-lg-6">
+    <div class="row">
+        <div class="col-md-8 col-lg-9 mb-4 mb-md-0">
+            <div class="blog-details">
+                <img loading=lazy class="img-fluid"
+                     src="@imageUrl"
+                     alt="@blogTitle">
+
+                <div class="blog-content">
+                    <div class="d-flex align-items-center justify-content-start mb-4">
+                        <div class="date-box">@day <br> @month</div>
+
+                        <div class="ms-4">
+                            <h2 class="h3">@blogTitle</h2>
+                            <div class="section-intro">
+                                <h2 class="h6 mb-0">
+                                    <span class="d-flex mb-0">
+                                        <span class="fw-light mb-0">
+                                            <i class="fas fa-user-edit text-primary"></i>
+                                            @Umbraco.GetDictionaryValue("Blog.By")
+                                            @blogAuthor
+                                        </span>
+
+                                        <span class="fw-light mb-0 ms-4">
+                                            <i class="fas fa-hourglass-end text-primary"></i>
+                                            @Umbraco.GetDictionaryValue("Blog.ReadTime") @blogTimeToRead
+                                        </span>
+                                    </span>
+                                </h2>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    @blogText
+                </div>
+
+                @if (blogTags != null)
+                {
+                    <div class="blog-tags mb-4 mb-md-5">
+                        @foreach (var tag in blogTags)
+                        {
+                            <a href="/pretraga/?q=@tag">@tag</a>
+                        }
+                    </div>
+                }
+
+                @if (Model.HasValue("blogGallery"))
+                {
+                    <div class="gallery-section">
+                        <div class="row">
+                            @{
+                                var blogGallery = Model.Value<IEnumerable<IPublishedContent>>("blogGallery");
+
+                                foreach (var img in blogGallery)
+                                {
+                                    <div class="image-item col-sm-6 col-md-4 col-lg-3">
+                                        <a href="@img.Url()"
+                                           class="image-popup">
+                                            <i class="fas fa-search"></i>
+                                            <img loading=lazy src="@img.Url()"
+                                                 alt="@img.Name"
+                                                 class="img-fluid" />
+                                        </a>
+                                    </div>
+                                }
+                            }
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+
+        <div class="col-md-4 col-lg-3">
+            <div class="section-intro mb-5">
+                <h2 class="h4 mb-0">@Umbraco.GetDictionaryValue("Blog.RecentPosts")</h2>
+            </div>
+
+            <div class="row">
+                @Html.Partial("~/Views/Partials/latestBlogs.cshtml")
+            </div>
+        </div>
+    </div>
+</div>
+

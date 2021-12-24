@@ -1,0 +1,29 @@
+.link-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    @include media-breakpoint-up(lg) {
+        & {
+            display: flex;
+            flex-wrap: wrap;
+        }
+    }
+
+    li {
+
+        @include media-breakpoint-up(lg) {
+            & {
+                width: calc(50% - 15px);     
+                
+                &:nth-child(odd) {
+                    padding-right: 20px;
+                }
+            }
+        }
+
+        &:not(:last-child) {
+            margin-bottom: 5px;
+        }
+    }
+}

@@ -1,0 +1,43 @@
+﻿@using Newtonsoft.Json
+@inherits UmbracoViewPage
+
+@{
+    var latitude = Model.Value<string>("latitude");
+    var longitude = Model.Value<string>("longitude");
+}
+
+@if (!String.IsNullOrWhiteSpace("latitude") && !String.IsNullOrWhiteSpace("longitude"))
+{
+
+    <script>
+            function initMap() {
+
+            var styles = [{ "featureType": "landscape", "stylers": [{ "saturation": -100 }, { "lightness": 60 }] }, { "featureType": "road.local", "stylers": [{ "saturation": -100 }, { "lightness": 40 }, { "visibility": "on" }] }, { "featureType": "transit", "stylers": [{ "saturation": -100 }, { "visibility": "simplified" }] }, { "featureType": "administrative.province", "stylers": [{ "visibility": "off" }] }, { "featureType": "water", "stylers": [{ "visibility": "on" }, { "lightness": 30 }] }, { "featureType": "road.highway", "elementType": "geometry.fill", "stylers": [{ "color": "#ef8c25" }, { "lightness": 40 }] }, { "featureType": "road.highway", "elementType": "geometry.stroke", "stylers": [{ "visibility": "off" }] }, { "featureType": "poi.park", "elementType": "geometry.fill", "stylers": [{ "color": "#b6c54c" }, { "lightness": 40 }, { "saturation": -40 }] }, {}];
+
+            var styledMap = new google.maps.StyledMapType(styles, { name: "Styled Map" });
+
+            var mapProp = {
+                center: new google.maps.LatLng(@latitude, @longitude),
+                zoom: 17,
+                scrollwheel: false,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            };
+
+            var map = new google.maps.Map(document.getElementById("map"), mapProp);
+
+            map.mapTypes.set('map_style', styledMap);
+            map.setMapTypeId('map_style');
+
+            var marker = new google.maps.Marker({
+                position: new google.maps.LatLng(@latitude, @longitude),
+                map: map,
+                title: "",
+                icon: "/assets/images/map-marker.png",
+                animation: google.maps.Animation.BOUNCE
+            });
+        }
+    </script>
+
+    <script async defer src="https://maps.googleapis.com/maps/api/js?libraries=places&key=&callback=initMap"></script>
+
+}

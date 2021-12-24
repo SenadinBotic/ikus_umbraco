@@ -1,0 +1,76 @@
+a {
+    position: relative;
+    text-decoration: none;
+    color:  $primary;
+
+    &:after {
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 1px;
+        bottom: 0;
+        left: 0;
+        background-color: $primary;
+        visibility: visible;
+        @include transform(scale(1));
+        @include transition(all 0.3s ease-in-out 0s);
+    }
+
+    &:hover {
+        &:after {
+            visibility: hidden;
+            @include transform(scale(0));
+        }
+    }
+
+    &.white {
+        color: $white;
+
+        &:after {
+            background-color: $white;
+        }
+    }
+    
+}
+
+.btn {
+    font-weight: 500;
+    text-transform: uppercase;
+    @include transition(all .3s);
+
+    &:after {
+        display: none;
+    }
+
+    &:focus,
+    &:active,
+    &:hover {
+        @include transform(translateY(-3px));
+    }
+
+    &.contact-submit {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+    &-outline-primary {
+        &:hover,
+        &:focus,
+        &:active {
+            background: $primary;
+            color: $white;
+        }
+    }
+
+    &-primary,
+    &-danger,
+    &-success {
+        color: $white;
+
+        &:hover,
+        &:focus,
+        &:active {
+            color: $white;
+        }
+    }
+}

@@ -73,4 +73,8 @@ a {
             color: $white;
         }
     }
+
+    &-width {
+        min-width: 100px
+    }
 }

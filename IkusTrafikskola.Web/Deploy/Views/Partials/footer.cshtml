@@ -1,0 +1,122 @@
+﻿@using Umbraco.Web.Models
+@inherits UmbracoViewPage
+
+@{ 
+    var homePage = Model.AncestorOrSelf<Home>();
+    var description = homePage.Value("description");
+    var copyright = homePage.Value("copyrightText");
+    var facebookLink = homePage.Value<Link>("facebookLink");
+    var instagramLink = homePage.Value<Link>("instagramLink");
+    var twitterLink = homePage.Value<Link>("twitterLink");
+    var email = homePage.Value("email");
+    var address = homePage.Value("address");
+    var mobilePhone = homePage.Value("mobilePhone");
+    var officePhone = homePage.Value("officePhone");
+    var logo = homePage.Value<IPublishedContent>("logo");
+    var backgroundImage = homePage.Value<IPublishedContent>("backgroundImage");
+
+    string logoUrl = "";
+    if (logo != null)
+    {
+        logoUrl = logo.Url();
+    }
+
+    string backgroundImageUrl = "";
+    if (backgroundImage != null)
+    {
+        backgroundImageUrl = backgroundImage.Url();
+    }
+}
+
+<footer class="footer pt-5 pt-lg-6"
+        style="background-image: url('@backgroundImageUrl');">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-md-4 pt-5 mb-5 mb-md-0 text-center text-md-start">
+
+                <img loading=lazy src="@logoUrl"
+                     alt="Logo"
+                     class="img-fluid mb-3">
+
+                <i class="d-block">
+                    @description
+                </i>
+
+            </div>
+
+            <div class="col-md-4 mb-5 mb-md-0">
+                <h2>@Umbraco.GetDictionaryValue("Footer.ContactUs")</h2>
+
+                <ul class="m-0 p-0">
+                    <li>
+                        <div class="d-flex align-items-center justify-content-center justify-content-md-start">
+                            <i class="fas fa-map-marker-alt"></i>
+                            @address
+                        </div>
+                    </li>
+                    <li>
+                        <div class="d-flex align-items-center justify-content-center justify-content-md-start">
+                            <i class="fas fa-mobile-alt"></i>
+                            <a href="tel:@mobilePhone">@mobilePhone</a>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="d-flex align-items-center justify-content-center justify-content-md-start">
+                            <i class="fas fa-phone-alt"></i>
+                            <a href="tel:@officePhone">@officePhone</a>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="d-flex align-items-center justify-content-center justify-content-md-start">
+                            <i class="far fa-envelope"></i>
+                            <a href="mailto:@email">@email</a>
+                        </div>
+                    </li>
+                </ul>
+
+            </div>
+
+            <div class="col-md-4 mb-5 mb-md-0">
+
+                <h2>@Umbraco.GetDictionaryValue("Footer.FollowUs")</h2>
+
+                <div class="social-icons d-flex justify-content-center justify-content-md-start">
+
+                    <a href="@instagramLink.Url" target="@instagramLink.Target"
+                       rel="noreferrer"
+                       aria-label="instagram"
+                       class="me-4">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+
+                    <a href="@twitterLink.Url" target="@twitterLink.Target"
+                       rel="noreferrer"
+                       aria-label="twitter"
+                       class="me-4">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+
+                    <a href="@facebookLink.Url" target="@facebookLink.Target"
+                       rel="noreferrer"
+                       aria-label="facebook">
+                        <i class="fab fa-facebook-square"></i>
+                    </a>
+
+                </div>
+
+            </div>
+
+            <div class="col-12 mt-5 mt-md-6">
+                <div class="copyright text-center py-4">
+                    @copyright
+                    <a href="https://www.linkedin.com/in/senadin-botic-8b30a167/"
+                       target="_blank"
+                       rel="noreferrer"
+                       class="white">Created by S.B.</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</footer>

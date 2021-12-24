@@ -1,0 +1,29 @@
+.funfact-section {
+    position: relative;
+    padding: 50px 0px 30px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
+
+    @include media-breakpoint-up(lg) {
+        & {
+            padding: 70px 0px 30px;
+        }
+    }
+
+    &:before {
+        content: '';
+        display: block;
+        background-color: rgba($black, 0.6);
+
+        @include absolute-cover;
+    }
+
+    .funfact-item {
+        .fas {
+            color: $white;
+            font-size: 2.7rem;
+        }
+    }
+}

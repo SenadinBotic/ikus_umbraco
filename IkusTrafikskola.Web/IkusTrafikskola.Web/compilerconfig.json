@@ -2,5 +2,9 @@
   {
     "outputFile": "assets/scss/style.css",
     "inputFile": "assets/scss/style.scss"
+  },
+  {
+    "outputFile": "assets/scripts/test.es5.js",
+    "inputFile": "assets/scripts/test.js"
   }
 ]

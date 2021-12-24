@@ -1,0 +1,123 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage
+
+@{ 
+    var intro = Model.Value("testimonialsIntro");
+    var image = Model.Value<IPublishedContent>("testimonialsImage");
+
+    var testimonials = Model.Value<IEnumerable<IPublishedElement>>("testimonial").OrderByDescending(x => x.Value<DateTime>("testimonialDate")).Take(5);
+
+    string imageUrl = "";
+    if (image != null)
+    {
+        imageUrl = image.Url();
+    }
+}
+
+<div class="testimonial-section"
+     style="@(!string.IsNullOrWhiteSpace(imageUrl) ? "background-image: url('" + imageUrl + "')" : "background-image: url('/assets/images/bg-img.jpg')" )">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-md-5">
+                <div class="section-intro white position-relative mb-5 mb-md-0">
+
+                    <div>@Umbraco.GetDictionaryValue("Homepage.Testimonials.Subtitle")</div>
+
+                    <h2>@Umbraco.GetDictionaryValue("Homepage.Testimonials.Title")</h2>
+
+                    @intro
+
+                </div>
+            </div>
+
+            <div class="col-md-7">
+                <div id="testimonialCarousel"
+                     class="carousel slide"
+                     data-bs-touch="true"
+                     data-bs-ride="carousel">
+
+                    <div class="carousel-inner">
+                        @foreach (var item in testimonials)
+                        {
+
+                            var name = item.Value("testimonialAuthor");
+                            var content = item.Value("testimonialContent");
+                            var position = item.Value("testimonialAuthorPosition");
+                            var authorImage = item.Value<IPublishedContent>("testimonialAuthorImage");
+                            var date = item.Value<DateTime>("testimonialDate").ToString("MM/dd/yyyy");
+
+                            string authorImageUrl = "";
+                            if (authorImage != null)
+                            {
+                                authorImageUrl = authorImage.Url();
+                            }
+
+                            <div class="carousel-item @( testimonials.IndexOf(item) == 0 ? "active" : "")"
+                                 data-bs-interval="7000">
+                                <div class="item d-flex">
+
+                                    <i class="fas fa-quote-left me-4 me-md-5"></i>
+
+                                    <div>
+                                        @content
+
+                                        <div class="author-info d-flex align-items-center">
+
+                                            <img loading=lazy src="@authorImageUrl"
+                                                 alt="@name">
+
+                                            <div class="ms-4">
+                                                <h3 class="mb-1">@name @date</h3>
+
+                                                <div class="occupation">@position</div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+
+                    <div class="carousel-indicators">
+
+                        <button type="button"
+                                data-bs-target="#testimonialCarousel"
+                                data-bs-slide-to="0"
+                                class="active"
+                                aria-current="true"
+                                aria-label="Testimonial 1">
+                        </button>
+
+                        <button type="button"
+                                data-bs-target="#testimonialCarousel"
+                                data-bs-slide-to="1"
+                                aria-label="Testimonial 2">
+                        </button>
+
+                        <button type="button"
+                                data-bs-target="#testimonialCarousel"
+                                data-bs-slide-to="2"
+                                aria-label="Testimonial 3">
+                        </button>
+
+                        <button type="button"
+                                data-bs-target="#testimonialCarousel"
+                                data-bs-slide-to="3"
+                                aria-label="Testimonial 4">
+                        </button>
+
+                        <button type="button"
+                                data-bs-target="#testimonialCarousel"
+                                data-bs-slide-to="4"
+                                aria-label="Testimonial 5">
+                        </button>
+
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

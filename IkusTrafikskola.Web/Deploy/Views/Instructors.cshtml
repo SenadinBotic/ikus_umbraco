@@ -1,0 +1,111 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage
+@using Umbraco.Web.Models
+
+@{
+    Layout = "Master.cshtml";
+
+    var instructors = Model.Value<IEnumerable<IPublishedElement>>("instructors");
+}
+
+@Html.Partial("~/Views/Partials/contentIntro.cshtml")
+
+<div class="instructor-section">
+    <div class="container mt-4 mb-3 mt-md-7 mb-md-6">
+        <div class="row gx-6">
+            @foreach (var instructor in instructors)
+            {
+                var name = instructor.Value("instructorName");
+                var language = instructor.Value("instructorLanguages");
+                var roles = instructor.Value("instructorRoles");
+                var info = instructor.Value("instructorInfo");
+                var linkFacebook = instructor.Value<Link>("instructorFacebookLink");
+                var linkLinkedin = instructor.Value<Link>("instructorLinkedinLink");
+                var linkTwitter = instructor.Value<Link>("instructorTwitterLink");
+                var linkInstagram = instructor.Value<Link>("instructorInstagramLink");
+                var image = instructor.Value<IPublishedContent>("instructorImage");
+
+                string instructorUrl = "";
+                if (image != null)
+                {
+                    instructorUrl = image.Url();
+                }
+
+                <div class="col-lg-6 mb-5 mb-sm-6 mb-lg-7">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <img loading=lazy src="@instructorUrl"
+                                 alt="@name"
+                                 class="img-fluid mb-4 mb-sm-0">
+                        </div>
+
+                        <div class="col-sm-6">
+                            <div class="info">
+                                <div>
+                                    <h3 class="h4">@name</h3>
+                                    <small class="d-block">
+                                        @roles
+                                    </small>
+                                    <small class="d-block">
+                                        @Umbraco.GetDictionaryValue("Personal.Language"):
+                                        @language
+                                    </small>
+                                    <p>
+                                        @info
+                                    </p>
+                                </div>
+
+                                <div class="social-icons">
+                                    @if (linkFacebook != null)
+                                    {
+                                        <a href="@linkFacebook.Url"
+                                           target="@linkFacebook.Target"
+                                           rel="noreferrer"
+                                           aria-label="facebook"
+                                           class="me-4">
+                                            <i class="fab fa-facebook-square"></i>
+                                        </a>
+                                    }
+
+                                    @if (linkLinkedin != null)
+                                    {
+                                        <a href="@linkLinkedin.Url"
+                                           target="@linkLinkedin.Target"
+                                           rel="noreferrer"
+                                           aria-label="linkedin"
+                                           class="me-4">
+                                            <i class="fab fa-linkedin"></i>
+                                        </a>
+                                    }
+
+                                    @if (linkTwitter != null)
+                                    {
+                                        <a href="@linkTwitter.Url"
+                                           target="@linkTwitter.Target"
+                                           rel="noreferrer"
+                                           aria-label="twitter"
+                                           class="me-4">
+                                            <i class="fab fa-twitter"></i>
+                                        </a>
+                                    }
+
+                                    @if (linkInstagram != null)
+                                    {
+                                        <a href="@linkInstagram.Url"
+                                           target="@linkInstagram.Target"
+                                           rel="noreferrer"
+                                           aria-label="instagram">
+                                            <i class="fab fa-instagram"></i>
+                                        </a>
+                                    }
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            }
+        </div>
+    </div>
+</div>

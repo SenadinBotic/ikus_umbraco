@@ -1,0 +1,162 @@
+﻿@model List<IkusTest>
+
+@using IkusTrafikskola.Core.ViewModels
+
+<div class="col-sm-12">
+    <div id="main-quiz-container" class="test">
+        <div class="timer mb-2 pb-1 small text-gray"></div>
+
+        <div id="intro-container" class="question-container">
+            <h3 class="mb-4 mb-md-5">Zapocnite test</h3>
+            <button type="button" class="btn btn-primary btn-sm btn-start">Start</button>
+        </div>
+
+        @foreach (var item in Model)
+        {
+            <div class="question-container question-content  hide-content">
+                <h3 class="mb-3 text-gray">
+                    @(Model.IndexOf(item)+1) / @Model.Count()
+                </h3>
+
+                <div class="question-image">
+                    <a class="test-popup" href="@item.Image">
+                        <img loading=lazy class="img-fluid" src="@item.Image" alt="@Html.Raw(item.Question)" />
+                    </a>
+                </div>
+
+                <div class="question mb-3">
+                    <h3 class="text-gray">
+                        @(Model.IndexOf(item) + 1). @Html.Raw(item.Question)
+                    </h3>
+                </div>
+
+                <ul class="answers mb-5 pb-2" data-questionId="@item.ID">
+                    @foreach (var answer in item.TestItemList.OrderBy(x => Guid.NewGuid()))
+                    {
+                        <li data-answerId="@answer.Id">
+                            <label><input name="" data-key="a" type="radio">@answer.QuestionAnswer</label>
+                        </li>
+                    }
+                </ul>
+
+                <input type="hidden" data- name="name" value="" />
+
+                <div class="d-flex justify-content-between align-items-center mb-3 mb-md-4">
+                    <div class="d-md-flex align-items-center">
+                        <div class="prev prev-button hide">
+                            <button class="btn btn-sm btn-primary btn-prev mb-3 mb-md-0 me-md-3" href="#">
+                                <i class="fas fa-chevron-left pe-2"></i>
+                                Prev
+                            </button>
+                        </div>
+
+                        <div class="overview-container">
+                            <button class="btn btn-sm btn-outline-primary btn-ovr" data-toggle="modal" data-target="#overviewModal">Pregled</button>
+                        </div>
+                    </div>
+
+                    <div class="d-md-flex align-items-center flex-md-row-reverse">
+                        <div class="next next-button mb-3 mb-md-0 ms-md-3">
+                            <button class="btn btn-sm btn-primary btn-next" href="#">
+                                Next
+                                <i class="fas fa-chevron-right ps-2"></i>
+                            </button>
+                        </div>
+
+                        <div class="overview-container overview-result mb-3 mb-md-0 me-md-3">
+                            <button class="btn btn-sm btn-outline-primary btn-ovr" data-toggle="modal" data-target="#overviewResultModal">Pregled</button>
+                        </div>
+
+                        <div class="finish-button">
+                            <button class="btn btn-sm btn-outline-primary btn-show-result" href="#">Finish</button>
+                        </div>
+                    </div>
+                </div>
+
+                @*<div class="text-center">
+                    <div class="finish-button result-button">
+                        <button class="btn btn-sm btn-success show-finish-result" href="#">Rezultat</button>
+                    </div>
+                </div>*@
+
+            </div>
+        }
+
+        <div class="modal fade" id="overviewModal" tabindex="-1" aria-labelledby="overviewModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="overviewModalLabel">Modal title</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="legend-container">
+                            <span class="answered-question-box selected">Odgovorena pitanja</span>
+                            <span class="answered-question-box">Neodgovorena pitanja</span>
+                        </div>
+                        @foreach (var item in Model)
+                        {
+                            <span class="answered-question-box" data-dismiss="modal" data-questionId="@item.ID">@(Model.IndexOf(item) + 1)</span>
+                        }
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="overviewModal" role="dialog">
+            <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                        <div class="questions-container-popup">
+                            <div class="legend-container">
+                                <span class="answered-question-box selected">Odgovorena pitanja</span>
+                                <span class="answered-question-box">Neodgovorena pitanja</span>
+                            </div>
+                            @foreach (var item in Model)
+                            {
+                                <span class="answered-question-box" data-dismiss="modal" data-questionId="@item.ID">@(Model.IndexOf(item) + 1)</span>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="overviewResultModal" role="dialog">
+            <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                        <div class="questions-container-popup">
+                            <div class="legend-container">
+                                <span class="answered-question-box selected">Tacan odgovor</span>
+                                <span class="answered-question-box">Netacan odgovor</span>
+                            </div>
+                            <div class="answered-popup">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="results-container" class="question-container hide-content">
+            <div id="resultKeeper">
+                <h2 class="q-title"></h2><h2 class="correctPercent"></h2>
+                <div class="result-keeper-container">
+                    <h5>Tacno odgovorenih pitanja : <span class="correctAnswersCount"></span> / <span class="answersCount"></span></h5>
+                    <div class="que-ans-container">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
