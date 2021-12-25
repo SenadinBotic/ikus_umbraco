@@ -110,9 +110,9 @@
 
             <ul class="navbar-nav mb-2 mb-lg-0">
 
-                <li class="@(Umbraco.AssignedContentItem.Url == homePage.Url ? "active" : null)">
+                @*<li class="@(Umbraco.AssignedContentItem.Url == homePage.Url ? "active" : null)">
                     <a href="@homePage.Url">@homePage.Name</a>
-                </li>
+                </li>*@
 
                 @if (navItems != null && navItems.Any())
                 {

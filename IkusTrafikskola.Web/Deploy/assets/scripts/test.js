@@ -248,7 +248,7 @@ function eraseCookie(name) {
         for (var d = 0; d < this.selector.length; d++) {
             this.selector[d].innerHTML = message;
             checkTestAnswers();
-            $(".timer-container").addClass("hidden");
+            $(".timer").addClass("hidden");
         }
     };
 
@@ -303,6 +303,8 @@ $("body").on("click", function () {
         $("#results-container").hide();
     });
     $(".finishedtestresult").on("click", function () {
+        console.log('dsfsdf');
+
         $(this).parent().parent().data("questionid");
         $(".question-content").removeClass('show-question');
         $("ul[data-questionid='" + $(this).parent().parent().data("questionid") + "']").parent().addClass('show-question');
@@ -313,25 +315,31 @@ $("body").on("click", function () {
 
 
 $(".finish-button button").on("click", function () {
+    const swalWithBootstrapButtons = Swal.mixin({
+        customClass: {
+            confirmButton: 'btn btn-success btn-width btn-sm me-3',
+            cancelButton: 'btn btn-danger btn-width btn-sm'
+        },
+        buttonsStyling: false
+    })
 
-    Swal.fire({
+    swalWithBootstrapButtons.fire({
         title: "Da li ste sigurni?",
-        type: "warning",
+        icon: "warning",
         showCancelButton: true,
-        confirmButtonClass: "btn-danger",
         confirmButtonText: "Da",
         cancelButtonText: "Ne",
-        closeOnConfirm: false
-    },
-        function () {
+    }).then((result) => {
+        if (result.isConfirmed) {
             checkTestAnswers();
             swal.close();
-        });
+        }
+    });
 });
 
 function checkTestAnswers() {
     $('#main-quiz-container').addClass('test-is-over');
-    $(".timer-container").addClass("hidden");
+    $(".timer").addClass("hidden");
     var answersCheck = JSON.parse(readCookie("PitanjaOdgovori"));
     var brojtacnih = 0;
     var html = "";
@@ -341,19 +349,19 @@ function checkTestAnswers() {
         var odgovor = $(this).find("li.selected").data("answerid");
         var pitanje = $(this).data("questionid");
         var tacanOdgovorId = answersCheck[pitanje].AnswerId;
-        var pitanjeText = $(this).parent().find(".question h3").text();
+        var pitanjeText = $(this).parent().find(".question h3 span").text();
 
         if (odgovor == undefined) {
             odgovor = -1;
         }
         if (tacanOdgovorId == odgovor) {
             html += "<div class='openQuestion'  data-questionId='" + pitanje + "'><div class='que-ans correct-answer'><div class='finishedtest'><p>" + pitanjeText + "</p></div></div></div>"
-            htmlPopUp += "<div class='openQuestion'  data-questionId='" + pitanje + "'><div class='que-ans correct-answer'><div class='finishedtestresult' data-dismiss='modal'></div></div></div>"
+            htmlPopUp += "<div class='openQuestion'  data-questionId='" + pitanje + "'><div class='que-ans correct-answer'><div class='finishedtestresult' data-bs-dismiss='modal'></div></div></div>"
             brojtacnih++;
         }
         else {
             html += "<div class='openQuestion' data-questionId='" + pitanje + "'><div class='que-ans wrong-answer'><div class='finishedtest'><p>" + pitanjeText + "</p></div></div></div>"
-            htmlPopUp += "<div class='openQuestion' data-questionId='" + pitanje + "'><div class='que-ans wrong-answer'><div class='finishedtestresult' data-dismiss='modal'></div></div></div>"
+            htmlPopUp += "<div class='openQuestion' data-questionId='" + pitanje + "'><div class='que-ans wrong-answer'><div class='finishedtestresult' data-bs-dismiss='modal'></div></div></div>"
 
         }
 

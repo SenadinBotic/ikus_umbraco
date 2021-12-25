@@ -3199,9 +3199,6 @@
     <Content Include="Views\Partials\TestPage\welcomePage.cshtml" />
     <Content Include="Views\TestPage.cshtml" />
     <Content Include="Views\Quiz.cshtml" />
-    <None Include="Web.Live.config">
-      <DependentUpon>Web.config</DependentUpon>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\IkusTrafikskola.Core\IkusTrafikskola.Core.csproj">
