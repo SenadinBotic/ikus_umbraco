@@ -10712,7 +10712,8 @@ table {
     display: -webkit-box;
     -webkit-line-clamp: 3;
     line-clamp: 3;
-    -webkit-box-orient: vertical; }
+    -webkit-box-orient: vertical;
+    max-height: 3.6em; }
   .blog-item .blog-item-content {
     position: relative;
     padding: 25px 20px 20px 20px;
