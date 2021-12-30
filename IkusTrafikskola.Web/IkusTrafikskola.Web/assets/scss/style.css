@@ -11055,4 +11055,6 @@ table {
       opacity: .7; }
   .questions-container-dialog .answered-popup .finishedtestresult {
     width: 100%;
-    height: 100%; }
+    height: 100%;
+    position: relative;
+    z-index: 1; }
