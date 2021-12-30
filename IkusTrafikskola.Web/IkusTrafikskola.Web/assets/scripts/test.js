@@ -303,8 +303,6 @@ $("body").on("click", function () {
         $("#results-container").hide();
     });
     $(".finishedtestresult").on("click", function () {
-        console.log('dsfsdf');
-
         $(this).parent().parent().data("questionid");
         $(".question-content").removeClass('show-question');
         $("ul[data-questionid='" + $(this).parent().parent().data("questionid") + "']").parent().addClass('show-question');
@@ -365,7 +363,7 @@ function checkTestAnswers() {
 
         }
 
-        var newFind = $("ul[data-questionid*='" + pitanje + "']");
+        var newFind = $("ul[data-questionid='" + pitanje + "']");
         newFind.find("li").filter("[data-answerid='" + tacanOdgovorId + "']").addClass("finishedTestCorrectA");
     });
 

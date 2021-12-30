@@ -34,7 +34,7 @@
                     @foreach (var answer in item.TestItemList.OrderBy(x => Guid.NewGuid()))
                     {
                         <li data-answerId="@answer.Id">
-                            <label><input name="" data-key="a" type="radio">@answer.QuestionAnswer</label>
+                            <label><input name="" data-key="@answer.Id" type="radio">@answer.QuestionAnswer</label>
                         </li>
                     }
                 </ul>
